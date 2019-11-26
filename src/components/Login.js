@@ -16,8 +16,6 @@ export class Login extends Component {
     
       logInSubmitted = (event) => {
         event.preventDefault()
-        // console.log("clicked")
-        // make a fetch
         fetch("http://localhost:3000/login", {
           method: "POST",
           headers: {
@@ -44,8 +42,6 @@ export class Login extends Component {
     
       signupSubmit = (event) => {
         event.preventDefault()
-        // console.log("clicked")
-        // make a fetch
         fetch("http://localhost:3000/signup", {
           method: "POST",
           headers: {

@@ -11,8 +11,15 @@ export class MainPage extends Component {
     render() {
         return (
             <div>
-                <h1> Hi Beautiful</h1>
-                <li><Link to="/profile">Go to Profile</Link></li>
+                <h1>Hey {this.props.username}!</h1>
+                <h3>What's the plan for tonight?</h3>
+                <button><Link to="/recipes">Eat In</Link></button> <br/>
+                <button><Link to="/restaurants">Go Out</Link></button> <br/>
+                <button><Link to="/events">My Events</Link></button> <br/>
+                <button><Link to="/favorites">My Favorites</Link></button> <br/>
+                <button><Link to="/profile">Profile</Link></button> <br/>
+                
+
             </div>
         )
     }
