@@ -360,11 +360,11 @@ export class RecipesContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Dinner at home? Sounds nice 🕯 </h1>
+                <h1>Dinner at home? Don't forget the candlelight 🕯 </h1>
                 <h3>Enter each ingredient one at a time</h3>
                 <RecipeSearchForm />
                 <Recipes />
-                {/* ingredient={this.state.ingredient} handleSubmit={this.handleIngredientSubmit} handleChange={this.handleIngredientInputChange} */}
+                
             </div>
         )
   

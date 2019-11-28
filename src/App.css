@@ -44,7 +44,7 @@ body {
 .navbar {
   font-family: 'Emilys Candy', cursive;
   font-size: 20px;
-  background-color: #fb6fe9;
+  background: url("https://i.pinimg.com/originals/b3/9d/da/b39dda8c2ef7c23446a0776b3717c4d5.jpg");
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 15px;
 }
@@ -108,7 +108,9 @@ body {
 
   .nav-links {
     margin-left: 40px;
-    color: black
+    color: white;
+    font-weight: bold ;
+    font-size: 36px
   }
 
   .logo {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Segment, Container, Form, Input, Header, TextArea} from 'semantic-ui-react';
+import {Card, Segment, Container, Form, Input, Header, TextArea} from 'semantic-ui-react';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 
 export class RecipeSearchForm extends Component {
@@ -17,12 +17,13 @@ export class RecipeSearchForm extends Component {
         apiMatchingIngredients: [],
         apiMissedIngredients: [],
         apiRecipeInstructions: {},
-        sideBarWidth: "0",
         recipeDetails: "",
         recipeSteps: [], 
         visible: true,
         modalIsOPen: false
       };
+
+      //For the Modal
 
       toggleAlert() {
           this.setState({
@@ -83,6 +84,8 @@ export class RecipeSearchForm extends Component {
         this.setState({ ingredientList: filteredIngredients });
       }
 
+      //Gets Recipes and renders recipes
+
       findRecipe = event => {
         event.preventDefault();
         let ingredientsString = "";
@@ -114,6 +117,7 @@ export class RecipeSearchForm extends Component {
                   <div
                     className="recipe-results"
                     onClick={() => this.getRecipeDetails(data.id)}
+                    style={{"border-style":"solid", "padding": "16px"}}
                   >
                     <h2>{data.title}</h2>
                     <img
@@ -123,7 +127,7 @@ export class RecipeSearchForm extends Component {
                       height="231"
                       width="312"
                     />
-                    <button onClick={this.toggleModal.bind(this)}>See Recipe Details</button>
+                    <button style={{"margin-right":"10px"}} onClick={this.toggleModal.bind(this)}>See Recipe Details</button>
                     <button
                       className="favorite-button"
                       onClick={event => this.favoriteRecipe(event, data)}
@@ -135,6 +139,7 @@ export class RecipeSearchForm extends Component {
                   <div
                     className="recipe-results"
                     onClick={() => this.getRecipeDetails(data.id)}
+                    style={{"border-style":"solid", "padding": "16px"}}
                   >
                     <h2>{data.title}</h2>
                     {this.state.apiMissedIngredients.length > 0 ? (
@@ -157,7 +162,7 @@ export class RecipeSearchForm extends Component {
                       height="231"
                       width="312"
                     /><br/>
-                    <button onClick={this.toggleModal.bind(this)}>See Recipe Details</button>
+                    <button style={{"margin-right":"10px"}} onClick={this.toggleModal.bind(this)}>See Recipe Details</button>
                     <button
                       className="favorite-button"
                       onClick={event => this.favoriteRecipe(event, data)}
@@ -179,13 +184,15 @@ export class RecipeSearchForm extends Component {
         };
       };
 
+      //Add to Favorites
+
       favoriteRecipe = (event, recipeData) => {
         event.stopPropagation();
         console.log("Favorited Recipe: ", recipeData);
         alert(`Added ${recipeData.title} to Favorites!`);
         console.log("props in App.js: ", this.props);
     
-        fetch("http://localhost:3000/user_recipes", {
+        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorites`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -207,6 +214,8 @@ export class RecipeSearchForm extends Component {
             console.log(error.message);
           });
       };
+
+      //Get Recipe Details
 
       getRecipeDetails = recipeId => {
         let queryString = `https://api.spoonacular.com/recipes/informationBulk?apiKey=${this.state.apiKey}&ids=${recipeId}`;
@@ -264,8 +273,6 @@ export class RecipeSearchForm extends Component {
                 } else {
                   this.setState({ isMissingInstructions: true });
                 }
-    
-                this.setState({ sideBarWidth: "40vw" });
               }
             );
           })
@@ -303,6 +310,8 @@ export class RecipeSearchForm extends Component {
      
 
     render() {
+
+      //Modal info, ingredients list and recipe instructions
 
         const ingredientList3 = this.state.apiMatchingIngredients.map(ingredient => (
             <button

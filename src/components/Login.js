@@ -78,7 +78,7 @@ export class Login extends Component {
       {
         this.state.logIn 
         ? 
-        <div className="container">
+        <section style={{"border-style":"solid", "padding":"40px"}} className="container">
           <h2 id="title" style={{"font-size": "24px" }}>Log In</h2>
           <button class="accountbutton" style={{"font-family":"Special Elite", "font-size":"14 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} 
           onClick={ () => this.setState({ logIn: false }) }>Sign Up</button><br/>
@@ -105,9 +105,9 @@ export class Login extends Component {
             </div>
             <input class="submit-button" style={{'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px', "font-family":"Special Elite", "font-size":"16 px"}} type="submit" />
           </form>
-        </div>
+        </section>
         :
-        <section>
+        <section style={{"border-style":"solid", "padding":"40px"}}>
           <h2 id="title" style={{"font-size": "24px" }}>Sign up </h2><br/>
           <button class="accountbutton" style={{"font-family":"Special Elite", "font-size":"14 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}}onClick={ () => this.setState({ logIn: true }) }>Already have an account</button><br/>
           <br/>

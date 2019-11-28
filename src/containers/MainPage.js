@@ -8,16 +8,38 @@ import {Link} from 'react-router-dom'
 
 
 export class MainPage extends Component {
+
+    // state = {
+    //     favorites: [],
+    //     token: localStorage.token
+    // }
+
+    // componentDidMount = () => {
+    //     fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorites`)
+    //     .then(res => res.json())
+    //     .then(favoritesData => {
+    //         console.log(favoritesData)
+    //         this.setState({
+    //             favorites: favoritesData
+    //         })
+    //     })
+    // }
+
+   
+
     render() {
+        // this.state.favorites.map(favoriteRecipe => <Favorites favorite={favoriteRecipe}/>)
+
         return (
             <div>
                 <h1>Hey {this.props.username}!</h1>
-                <h3>What's the plan for tonight?</h3>
-                <button><Link to="/recipes">Eat In</Link></button> <br/>
-                <button><Link to="/restaurants">Go Out</Link></button> <br/>
-                <button><Link to="/events">My Events</Link></button> <br/>
-                <button><Link to="/favorites">My Favorites</Link></button> <br/>
-                <button><Link to="/profile">Profile</Link></button> <br/>
+                <h3>What's the plan for tonight?</h3><br/>
+                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/recipes">Eat In</Link></button> <br/>
+                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/restaurants">Go Out</Link></button> <br/>
+                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/events">My Events</Link></button> <br/>
+                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/favorites">My Favorites</Link></button> <br/>
+                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/profile">Profile</Link></button> <br/>
+                
                 
 
             </div>

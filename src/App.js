@@ -70,9 +70,10 @@ class App extends React.Component {
                     </div>
                 <ul class="main-nav" id="js-menu">
                   <li>
-                    <a  href="/main" class="nav-links">{this.state.username ? <text>Welcome {this.state.username} </text> : null}
+                    <a  href="/main" class="nav-links"> Home
                        </a>
                   </li>
+                  {/* {this.state.username ? <text>Welcome {this.state.username} </text> : null} */}
                   <li>
                     <a onClick={this.logOutClicked} href="#" class="nav-links">Log Out </a>
                   </li>
