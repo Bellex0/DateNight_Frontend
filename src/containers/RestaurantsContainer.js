@@ -6,7 +6,7 @@ export class RestaurantsContainer extends Component {
     render() {
         return (
             <div>
-                <h1> Explore new places here </h1>
+                <h1> Explore new places here! 🍽 </h1>
                
                 <RestaurantSearchForm />
                 <Restaurants />

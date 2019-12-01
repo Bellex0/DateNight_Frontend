@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Radio } from 'semantic-ui-react'
 var convert = require('convert-units')
 
 export class RestaurantSearchForm extends Component {
@@ -58,36 +58,100 @@ findPlace = evt => {
             <h4>Rating: {restaurant.rating}</h4>
             <h6><a href={restaurant.url}>Visit Yelp Page</a></h6>
             <img src={`${restaurant.image_url}`} style={{"width":"300px", "height":"300px"}} ></img>
+            <button onClick={event => this.favoritePlace(event, restaurant)} style={{"margin":"16px"}}> ❣️ Favorite! </button>
             
         </div>
     )
         this.setState({
             foundPlaces: foundPlaces
-        })        
+        })   
     })
 }
 
-setSortTerm = (term) => {
+        favoritePlace = (event, restaurant) => {
+            event.stopPropagation();
+            console.log("Favorited Place: ", restaurant);
+            alert(`Added ${restaurant.name} to Favorites ❤️!`);
+            console.log( this.props);
+
+            fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorite_places`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json", 
+                "Authorization": localStorage.token
+            },
+            body: JSON.stringify({
+                user_id: this.props.userId,
+                name: restaurant.name,
+                image: restaurant.image_url,
+                location: restaurant.location.display_address[1],
+                price: restaurant.price,
+                rating: restaurant.rating,
+                url: restaurant.url
+                
+
+            })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("favorited place: ", data);
+            })
+            .catch(error => {
+                console.log(error.message);
+            });
+        };
+
+ 
+
+// setSortTerm = (term) => {
+//     this.setState({
+//       sortTerm: term
+//     })
+//   }
+
+
+handleSort = (e) => {
+    // console.log(e.target.value)
     this.setState({
-      sortTerm: term
+      sortTerm: e.target.value
     })
   }
 
-  // Sort the Places
-  whichPlacesToRender = () => {
-      console.log("sort")
-    let copiedPlaces = [...this.state.foundPlaces]
-    if (this.state.sortTerm === "Price") {
-        copiedPlaces.sort((placeA, placeB) => {
-          return placeA.price - placeB.price
-        })
-      } else if (this.state.sortTerm === "Rating") {
-        copiedPlaces.sort((placeA, placeB) => {
-          return placeA.rating.localeCompare(placeB.rating)
-        })
-      }
-      return copiedPlaces
+  sortFood = () => {
+    console.log("sort")
+    if(this.state.sortTerm === "Price"){
+      return [...this.state.foundPlaces].sort((a,b) => a.price.localeCompare(b.price))
     }
+    else if(this.state.sortMethod === "Rating"){
+      return [...this.state.foundPlaces].sort((a,b) => a.Rating - b.Rating)
+    }
+    else{
+      return this.state.foundPlaces
+    }
+  }
+
+  // Sort the Places
+//   whichPlacesToRender = () => {
+//       console.log("sort")
+//       console.log("copiedPlaces")
+//     let copiedPlaces = [...this.state.foundPlaces]
+//     if (this.state.sortTerm === "Price") {
+//         copiedPlaces.sort((placeA, placeB) => {
+//           return placeA.price - placeB.price
+//         })
+//       } else if (this.state.sortTerm === "Rating") {
+//         copiedPlaces.sort((placeA, placeB) => {
+//           return placeA.rating.localeCompare(placeB.rating)
+//         })
+//       }
+//       return copiedPlaces
+//     }
+
+
+
+
+
 
     render() {
        
@@ -120,25 +184,36 @@ setSortTerm = (term) => {
                     onChange={this.handleChange}
                     />
                     </Form.Group>
-                    <Form.Group inline>
-                    <label>Sort by: </label>
-                    <Form.Radio
+                 
+                  
+                <Button onClick={this.findPlace} id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px"}}>Let's go!</Button>
+                </Form>
+
+                
+                    <Form.Field
+                        control= {Radio}
                         label='Price'
                         value='Price'
                         checked={this.state.sortTerm === 'Price'}
-                        onChange={(evt) => this.setSortTerm(evt.target.value)}
+                        onChange={this.handleSort}
                     />
-                    <Form.Radio
+
+                    
+                    {/* {(evt) => this.setSortTerm(evt.target.value)} */}
+                    <Form.Field
+                     control= {Radio}
                         label='Rating'
                         value='Rating'
                         checked={this.state.sortTerm === 'Rating'}
-                        onChange={(evt) => this.setSortTerm(evt.target.value)}
-                    />
-                    </Form.Group>
-                <Button onClick={this.findPlace} id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px"}}>Let's go!</Button>
-                </Form>
+                        onChange={this.handleSort}
+                    /> 
+                  
+
                 
-                {/* {this.state.foundPlaces} */}
+            
+                {this.sortFood()}
+                
+                
                
                
 

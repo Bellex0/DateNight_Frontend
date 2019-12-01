@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Favorites from '../components/Favorites'
+import Favorites from '../components/Favorites';
+import FavoriteRestaurants from '../components/FavoriteRestaurants'
 
 export class FavoritesContainer extends Component {
 
@@ -23,6 +24,8 @@ export class FavoritesContainer extends Component {
         this.componentDidMount()
     }
 
+   
+
     // deleteRecipe = (evt) => {
     //     console.log(evt.target.className)
     //     if (evt.target.className === "ui button delete-fave"){
@@ -34,12 +37,20 @@ export class FavoritesContainer extends Component {
     // }
 
     render() {
-         const faveRecipeList = this.state.favorites.map(favoriteRecipe => <Favorites favorite={favoriteRecipe} mount={this.mount}/>)
+        // let favePlaces = this.state.favorites.filter(favorite => favorite.recipe_api_id === null)
+        // console.log(favePlaces)
+        //  const faveRecipeList = this.state.favorites.map(favoriteRecipe => <Favorites favorite={favoriteRecipe} mount={this.mount}/>)
+
+         let faveRecipeList = this.state.favorites.length > 0 ? (
+            this.state.favorites.map(favoriteRecipe => { return (<Favorites favorite={favoriteRecipe} mount={this.mount}/>)}))
+            : 
+            (<h4 style={{"margin-top": "40px"}}>You don't have any favorites right now. Get to it!</h4>)
 
         return (
-            <div>
-                 <h1>Favorite Recipes</h1>
+            <div >
+                 <h1 style={{"font-family":"Emilys Candy"}}>Favorite Recipes</h1>
                  {faveRecipeList}
+
             
             </div>
         )

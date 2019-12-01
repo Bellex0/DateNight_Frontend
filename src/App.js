@@ -9,7 +9,7 @@ import EventsContainer from './containers/EventsContainer';
 import FavoritesContainer from './containers/FavoritesContainer'; 
 import RestaurantsContainer from './containers/RestaurantsContainer'; 
 import RecipesContainer from './containers/RecipesContainer'; 
-
+import FavoriteRestaurantsContainer from './containers/FavoriteRestaurantsContainer'; 
 
 class App extends React.Component {
 
@@ -70,10 +70,12 @@ class App extends React.Component {
                     </div>
                 <ul class="main-nav" id="js-menu">
                   <li>
-                    <a  href="/main" class="nav-links"> Home
-                       </a>
+                  {this.state.username ? <a  href="/main" class="nav-links"> Home
+                       </a>: null}
+                    {/* <a  href="/main" class="nav-links"> Home
+                       </a> */}
                   </li>
-                  {/* {this.state.username ? <text>Welcome {this.state.username} </text> : null} */}
+                 
                   <li>
                     <a onClick={this.logOutClicked} href="#" class="nav-links">Log Out </a>
                   </li>
@@ -98,7 +100,8 @@ class App extends React.Component {
         <Route path={'/main'} render={routerProps => <MainPage {...routerProps} username={this.state.username}/>} />
         <Route path={'/profile'} render={routerProps => <Profile {...routerProps} username={this.state.username}/>} />
         <Route path={'/events'} component={EventsContainer} />
-        <Route path={'/favorites'} component={FavoritesContainer} />
+        <Route path={'/favorite_recipes'} component={FavoritesContainer} />
+        <Route path={'/favorite_places'} component={FavoriteRestaurantsContainer} />
         <Route path={'/restaurants'} component={RestaurantsContainer} />
         <Route path={'/recipes'} component={RecipesContainer} />
 

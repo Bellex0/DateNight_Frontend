@@ -189,8 +189,8 @@ export class RecipeSearchForm extends Component {
       favoriteRecipe = (event, recipeData) => {
         event.stopPropagation();
         console.log("Favorited Recipe: ", recipeData);
-        alert(`Added ${recipeData.title} to Favorites!`);
-        console.log("props in App.js: ", this.props);
+        alert(`Added ${recipeData.title} to Favorites ❤️ !`);
+        console.log( this.props);
     
         fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorites`, {
           method: "POST",

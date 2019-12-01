@@ -34,10 +34,11 @@ export class MainPage extends Component {
             <div>
                 <h1>Hey {this.props.username}!</h1>
                 <h3>What's the plan for tonight?</h3><br/>
-                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/recipes">Eat In</Link></button> <br/>
-                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/restaurants">Go Out</Link></button> <br/>
-                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/events">My Events</Link></button> <br/>
-                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/favorites">My Favorites</Link></button> <br/>
+                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/recipes">Eat In 🏠🍝</Link></button> <br/>
+                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/restaurants">Go Out 🍾🚕</Link></button> <br/>
+                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/events">My Events 🎉 </Link></button> <br/>
+                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/favorite_recipes">My Favorite Recipes 👩‍🍳</Link></button> <br/>
+                <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/favorite_places">My Favorite Places 🍷</Link></button> <br/>
                 <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/profile">Profile</Link></button> <br/>
                 
                 
