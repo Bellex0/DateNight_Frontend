@@ -5,7 +5,7 @@ var convert = require('convert-units')
 export class RestaurantSearchForm extends Component {
 
 state = {
-    apiKey: "KKxHb2z0--uOFzaXe_KCopD-sZlMYQ8TrDlZZ4hSuSpWLsyVLLg6RcnWLdHBBNV_e2iR1bU0ZIK6ceXQAg0RaB_UgIJq0sx-fHbC6h3P2rGns3OtEX6BID_blVeSXXYx",
+    apiKey: process.env.REACT_APP_YELP_API_KEY,
     term: "",
     location: "",
     category: "",

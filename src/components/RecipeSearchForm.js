@@ -5,7 +5,7 @@ import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 export class RecipeSearchForm extends Component {
 
     state = {
-        apiKey: "c14f3b0dda974d148e50242280f22004",
+        apiKey: process.env.REACT_APP_SPOON_API_KEY,
         username: "",
         ingredient: "",
         ingredientList: [],
