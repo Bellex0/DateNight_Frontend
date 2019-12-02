@@ -4,7 +4,7 @@ import {Card, Button} from 'semantic-ui-react';
 export class Favorites extends Component {
 
     state = {
-        apiKey: "c14f3b0dda974d148e50242280f22004",
+        apiKey: "process.env.REACT_APP_SPOON_API_KEY",
         apiRecipeInstructions:{},
         ingredientList: [],
         recipeDetails:"",
@@ -28,9 +28,65 @@ export class Favorites extends Component {
         })
     }
 
+    fetchFavoriteRecipes = () => {
+        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorites`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            username: this.props.username
+          })
+        })
+          .then(response => response.json())
+          .then(fetched_DB_RecipeData => {
+            this.setState({ apiReturnedRecipes: fetched_DB_RecipeData }, () =>
+              this.findRecipe()
+            );
+          })
+          .catch(err => {
+            console.error(err.message);
+          });
+      };
+
+      findRecipe = () => {
+        console.log("List of fetched_DB_Recipes: ", this.state.apiReturnedRecipes);
+    
+        const apiFormattedReturnedRecipes = this.state.apiReturnedRecipes.map(
+          data =>
+              <div
+                className="recipe-results"
+                onClick={() => this.getRecipeDetails(data.recipe_api_id)}
+              >
+                <h1>{data.title}</h1>
+                {this.state.isMissingInstructions && (
+                  <h2>
+                    Missing Instructions{" "}
+                    <span role="img" aria-label="Sad Emoji">
+                      😓
+                    </span>
+                  </h2>
+                )}
+                <img
+                  className="recipe-results-img"
+                  src={data.image}
+                  alt={data.title}
+                  height="231"
+                  width="312"
+                />
+                {this.setState({ isMissingIngredients: true })}
+              </div>
+            )
+        this.setState({
+          apiFormattedReturnedRecipes: apiFormattedReturnedRecipes
+        });
+      };
+
     getRecipeDetails = recipeId => {
         console.log("hello")
-        let queryString = `https://api.spoonacular.com/recipes/informationBulk?apiKey=${this.state.apiKey}&ids=${this.props.favorite.recipe_api_id}`;
+        let queryString = `https://api.spoonacular.com/recipes/informationBulk?apiKey=${this.state.apiKey}&ids=${recipeId}`;
     
         fetch(queryString)
           .then(res => res.json())
@@ -50,38 +106,38 @@ export class Favorites extends Component {
     
                 const recipeDetails = (
                   <div className="recipe-details">
-                    <img src={this.props.favorite.image} alt={this.props.favorite.title} />
-                    <h1>{this.props.favorite.title}</h1>
-                    {this.props.favorite.preparationMinutes ? (
-                      <h3>{`Prep Time : ${this.props.favorite.preparationMinutes} minutes`}</h3>
+                    <img src={recipe.image} alt={recipe.title} />
+                    <h1>{recipe.title}</h1>
+                    {recipe.preparationMinutes ? (
+                      <h3>{`Prep Time : ${recipe.preparationMinutes} minutes`}</h3>
                     ) : null}
-                    {this.props.favorite.cookingMinutes ? (
-                      <h3>{`Cook Time : ${this.props.favorite.cookingMinutes} minutes`}</h3>
+                    {recipe.cookingMinutes ? (
+                      <h3>{`Cook Time : ${recipe.cookingMinutes} minutes`}</h3>
                     ) : null}
-                    <h3>{`Amount of Ingredients: ${this.props.favorite.extendedIngredients.length}`}</h3>
-                    <h3>{`Number of Servings: ${this.props.favorite.servings}`}</h3>
-                    {this.props.favorite.dishTypes.length > 0 ? (
-                      <h3>{`Category: ${this.props.favorite.dishTypes[0]}`}</h3>
+                    <h3>{`Amount of Ingredients: ${recipe.extendedIngredients.length}`}</h3>
+                    <h3>{`Number of Servings: ${recipe.servings}`}</h3>
+                    {recipe.dishTypes.length > 0 ? (
+                      <h3>{`Category: ${recipe.dishTypes[0]}`}</h3>
                     ) : null}
                     <div className="recipe-ingredient-image">
-                      {this.props.favorite.extendedIngredients.map(ingredient => {
+                      {recipe.extendedIngredients.map(ingredient => {
                         return (
                           <img
-                            src={`https://spoonacular.com/cdn/ingredients_100x100/${this.props.favorite.image}`}
+                            src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`}
                             alt="recipe ingredient"
                           />
                         );
                       })}
                     </div>
-                    {this.listMissingIngredients(this.props.favorite.extendedIngredients)}
+                    {this.listMissingIngredients(recipe.extendedIngredients)}
                   </div>
                 );
     
                 this.setState({ recipeDetails: recipeDetails });
     
-                if (this.props.favorite.instructions) {
+                if (recipe.instructions) {
                   this.setState({
-                    recipeSteps: this.props.favorite.analyzedInstructions[0].steps
+                    recipeSteps: recipe.analyzedInstructions[0].steps
                   });
                 } else {
                   this.setState({ isMissingInstructions: true });
@@ -132,7 +188,7 @@ export class Favorites extends Component {
                onClick={this.deleteAnswer} 
                >❌ Delete </Button>
                </Card>
-               {this.recipeDetails}
+               {this.state.recipeDetails}
             </div>
         )
     }

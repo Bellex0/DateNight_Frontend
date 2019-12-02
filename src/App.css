@@ -25,9 +25,13 @@
   font-family: 'Emilys Candy'
 }
 
-.delete-ingredient:hover {
-  background-color: red
+button {
+  border-radius: 30px;
 }
+
+/* .delete-ingredient:hover {
+  background-color: red
+} */
 
 /* NavBar */
 

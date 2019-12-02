@@ -9,6 +9,8 @@ import {Link} from 'react-router-dom'
 
 export class MainPage extends Component {
 
+ 
+
     // state = {
     //     favorites: [],
     //     token: localStorage.token

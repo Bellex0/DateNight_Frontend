@@ -23,6 +23,13 @@ handleSubmit = evt => {
       })
     }
 
+    handleOtherSubmit = evt => {
+        evt.preventDefault();
+        this.setState({
+           sortTerm: this.state.sortTerm
+          })
+        }
+
 handleChange = (evt) => {
     this.setState({ [evt.target.name]: evt.target.value})
 }
@@ -59,6 +66,7 @@ findPlace = evt => {
             <h6><a href={restaurant.url}>Visit Yelp Page</a></h6>
             <img src={`${restaurant.image_url}`} style={{"width":"300px", "height":"300px"}} ></img>
             <button onClick={event => this.favoritePlace(event, restaurant)} style={{"margin":"16px"}}> ❣️ Favorite! </button>
+            <button onClick={event => this.addEvent(event, restaurant)} style={{"margin":"16px"}}> Add Event! </button>
             
         </div>
     )
@@ -67,6 +75,35 @@ findPlace = evt => {
         })   
     })
 }
+
+addEvent = (event, restaurant) => {
+    // event.stopPropagation();
+    alert(`Added ${restaurant.name} to Events !`);
+    console.log( this.props);
+
+    fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json", 
+        "Authorization": localStorage.token
+      },
+      body: JSON.stringify({
+        user_id: this.props.userId,
+        date: "",
+        time: "",
+        location: restaurant.location.display_address[1],
+        content: restaurant.name,
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log("event: ", data);
+      })
+    //   .catch(error => {
+    //     console.log(error.message);
+    //   });
+  };
 
         favoritePlace = (event, restaurant) => {
             event.stopPropagation();
@@ -89,8 +126,6 @@ findPlace = evt => {
                 price: restaurant.price,
                 rating: restaurant.rating,
                 url: restaurant.url
-                
-
             })
             })
             .then(res => res.json())
@@ -102,6 +137,8 @@ findPlace = evt => {
             });
         };
 
+        
+
  
 
 // setSortTerm = (term) => {
@@ -112,19 +149,19 @@ findPlace = evt => {
 
 
 handleSort = (e) => {
-    // console.log(e.target.value)
+    console.log(e.target.innerText)
     this.setState({
-      sortTerm: e.target.value
+      sortTerm: e.target.innerText
     })
   }
 
   sortFood = () => {
     console.log("sort")
     if(this.state.sortTerm === "Price"){
-      return [...this.state.foundPlaces].sort((a,b) => a.price.localeCompare(b.price))
+      return this.state.foundPlaces.sort((a,b) => a.Price.localeCompare(b.Price))
     }
-    else if(this.state.sortMethod === "Rating"){
-      return [...this.state.foundPlaces].sort((a,b) => a.Rating - b.Rating)
+    else if(this.state.sortTerm === "Rating"){
+      return this.state.foundPlaces.sort((a,b) => a.Rating - b.Rating)
     }
     else{
       return this.state.foundPlaces
@@ -147,11 +184,6 @@ handleSort = (e) => {
 //       }
 //       return copiedPlaces
 //     }
-
-
-
-
-
 
     render() {
        
@@ -189,7 +221,9 @@ handleSort = (e) => {
                 <Button onClick={this.findPlace} id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px"}}>Let's go!</Button>
                 </Form>
 
-                
+                <Form onSubmit={this.handleOtherSubmit} >
+                    <Form.Group inline>
+                    <label>Sort by: </label>
                     <Form.Field
                         control= {Radio}
                         label='Price'
@@ -197,7 +231,6 @@ handleSort = (e) => {
                         checked={this.state.sortTerm === 'Price'}
                         onChange={this.handleSort}
                     />
-
                     
                     {/* {(evt) => this.setSortTerm(evt.target.value)} */}
                     <Form.Field
@@ -207,17 +240,17 @@ handleSort = (e) => {
                         checked={this.state.sortTerm === 'Rating'}
                         onChange={this.handleSort}
                     /> 
-                  
-
+                    </Form.Group>
+                    </Form>
                 
-            
-                {this.sortFood()}
-                
-                
-               
-               
+                <div>
+        {/* {this.state.foundPlaces} */}
+        {this.sortFood()}
+        </div>
 
             </div>
+            
+
         )
     }
 }

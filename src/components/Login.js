@@ -5,7 +5,10 @@ export class Login extends Component {
         logIn: false,
         username: "",
         password: "",
-        errors: []
+        errors: [],
+        name: "", 
+        location: "",
+        image: ""
       }
     
       handleChange = event => {
@@ -49,7 +52,10 @@ export class Login extends Component {
           },
           body: JSON.stringify({
             username: this.state.username, 
-            password: this.state.password
+            password: this.state.password,
+            name: this.state.name,
+            location: this.state.location, 
+            image: this.state.image
           })
         }).then(res => res.json())
         .then(data => {
@@ -66,6 +72,10 @@ export class Login extends Component {
         // when fetch is done...get token
       }
 
+      handleFile = e => {
+        this.setState({ [e.target.name]: e.target.files[0] });
+      }
+
     render() {
         return <>
     <h1 class="animated infinite pulse delay-2s" id="title" style={{"font-size": "48px" }} >Date Night🌹</h1>
@@ -80,11 +90,11 @@ export class Login extends Component {
         ? 
         <section style={{"border-style":"solid", "padding":"40px"}} className="container">
           <h2 id="title" style={{"font-size": "24px" }}>Log In</h2>
-          <button class="accountbutton" style={{"font-family":"Special Elite", "font-size":"14 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} 
+          <button class="accountbutton" style={{"font-family":"Emilys Candy", "font-size":"14 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} 
           onClick={ () => this.setState({ logIn: false }) }>Sign Up</button><br/>
           <br/><form className="form-signin" onSubmit={ this.logInSubmitted }>
             <div>
-            <label  id="label" style={{"font-family":"Special Elite"}} htmlFor="log_in_username">Username</label>
+            <label  id="label" style={{"font-family":"Emilys Candy"}} htmlFor="log_in_username">Username</label>
             <input  id="log_in_username" 
                     type="text" 
                     onChange={ this.handleChange /* for controlled form input status */ } 
@@ -94,7 +104,7 @@ export class Login extends Component {
                     />
                     </div>
               <div>
-            <label  id="label" style={{"font-family":"Special Elite"}} htmlFor="log_in_password">Password</label>
+            <label  id="label" style={{"font-family":"Emilys Candy"}} htmlFor="log_in_password">Password</label>
             <input  id="log_in_password" 
                     type="password" 
                     onChange={ this.handleChange } 
@@ -103,17 +113,17 @@ export class Login extends Component {
                     value={ this.state.password } 
                     />
             </div>
-            <input class="submit-button" style={{'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px', "font-family":"Special Elite", "font-size":"16 px"}} type="submit" />
+            <input class="submit-button" style={{'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px', "font-family":"Emilys Candy", "font-size":"16 px"}} type="submit" />
           </form>
         </section>
         :
         <section style={{"border-style":"solid", "padding":"40px"}}>
           <h2 id="title" style={{"font-size": "24px" }}>Sign up </h2><br/>
-          <button class="accountbutton" style={{"font-family":"Special Elite", "font-size":"14 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}}onClick={ () => this.setState({ logIn: true }) }>Already have an account</button><br/>
+          <button class="accountbutton" style={{"font-family":"Emilys Candy", "font-size":"14 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}}onClick={ () => this.setState({ logIn: true }) }>Already have an account</button><br/>
           <br/>
-          <form onSubmit ={this.signupSubmit}>
+          <form onSubmit ={this.signupSubmit} >
             <div>
-            <label  style={{"font-family":"Special Elite", "font-size":"18 px"}} htmlFor="sign_up_username">Username</label>
+            <label  style={{"font-family":"Emilys Candy", "font-size":"18 px"}} htmlFor="sign_up_username">Username</label>
             <input  id="sign_up_username" 
                     type="text" 
                     onChange={ this.handleChange } 
@@ -122,7 +132,7 @@ export class Login extends Component {
                     value={ this.state.username } />
                     </div>
                     <div>
-            <label  style={{"font-family":"Special Elite", "font-size":"18 px"}} htmlFor="sign_up_password">Password</label>
+            <label  style={{"font-family":"Emilys Candy", "font-size":"18 px"}} htmlFor="sign_up_password">Password</label>
             <input  id="sign_up_password" 
                     type="password" 
                     onChange={ this.handleChange } 
@@ -130,7 +140,31 @@ export class Login extends Component {
                     placeholder="new password"
                     value={ this.state.password } />
                     </div>
-            <input class="submit-button" style={{"font-family":"Special Elite", "font-size":"16 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} type="submit" />
+                    <div>
+            <label>Name</label>   
+            < input id="sign_up_name" 
+                    type="text" 
+                    onChange={ this.handleChange } 
+                    name="name" 
+                    value={ this.state.name } />   
+            </div>
+            <div>
+            <label>Location</label>   
+            < input id="sign_up_location" 
+                    type="text" 
+                    onChange={ this.handleChange } 
+                    name="location" 
+                    value={ this.state.location } />   
+            </div>
+            <div>
+            <label>Avatar</label>   
+            < input id="sign_up_avatar" 
+                    type="file" 
+                    onChange={ this.handleFile } 
+                    name="image" 
+                    value={ this.state.image } />   
+            </div>
+            <input class="submit-button" style={{"font-family":"Emilys Candy", "font-size":"16 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} type="submit" />
           </form>
         </section>
       }

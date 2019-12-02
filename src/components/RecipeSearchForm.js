@@ -65,21 +65,22 @@ export class RecipeSearchForm extends Component {
 
       renderIngredient = () => {
         return this.state.ingredientList.map(ingredient => (
-          <div
+          <div style={{"margin-top": "20px"}}
             disabled
             className="delete-ingredient"
-            onClick={event => this.deleteIngredient(event)}
+            // onClick={event => this.deleteIngredient(event)}
           >
             {`${ingredient}`}
-          </div>        
+            <button style={{"margin-left": "10px"}} data-id={`${ingredient}`} onClick={event => this.deleteIngredient(event)}>❌Delete</button>  
+          </div>      
         ));
       };
 
       deleteIngredient = event => {
-        event.persist();
-        console.log(event.target.textContent);
+        // event.persist();
+        console.log(event.target);
         let filteredIngredients = this.state.ingredientList.filter(
-          ingredient => ingredient !== event.target.textContent
+          ingredient => ingredient !== event.target.dataset.id
         );
         this.setState({ ingredientList: filteredIngredients });
       }
@@ -209,6 +210,34 @@ export class RecipeSearchForm extends Component {
           .then(res => res.json())
           .then(data => {
             console.log("favorited recipe: ", data);
+          })
+          .catch(error => {
+            console.log(error.message);
+          });
+      };
+
+      //Add Event from recipe
+
+      addEvent = (event, recipeData) => {
+        event.stopPropagation();
+        alert(`Added ${recipeData.title} to Events !`);
+        console.log( this.props);
+    
+        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json", 
+            "Authorization": localStorage.token
+          },
+          body: JSON.stringify({
+            user_id: this.props.userId,
+            content: recipeData.title,
+          })
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log("event: ", data);
           })
           .catch(error => {
             console.log(error.message);
