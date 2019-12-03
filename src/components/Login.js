@@ -156,14 +156,14 @@ export class Login extends Component {
                     name="location" 
                     value={ this.state.location } />   
             </div>
-            <div>
-            <label>Avatar</label>   
+            {/* <div> */}
+            {/* <label>Avatar</label>   
             < input id="sign_up_avatar" 
                     type="file" 
                     onChange={ this.handleFile } 
                     name="image" 
                     value={ this.state.image } />   
-            </div>
+            </div> */}
             <input class="submit-button" style={{"font-family":"Emilys Candy", "font-size":"16 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} type="submit" />
           </form>
         </section>

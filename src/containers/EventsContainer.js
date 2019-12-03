@@ -12,6 +12,9 @@ export class EventsContainer extends Component {
         fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`)
         .then(res => res.json())
         .then(eventsData => {
+            let events =  eventsData.sort(
+                (a, b) => new Date(...a.date.split('/').reverse()) - new Date(...b.date.split('/').reverse()))
+                
             console.log(eventsData)
             this.setState({
                 events: eventsData

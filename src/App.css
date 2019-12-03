@@ -29,6 +29,29 @@ button {
   border-radius: 30px;
 }
 
+.main-buttons {
+  font-family: Emilys Candy;
+  width: 100%;
+  table-layout: fixed;
+  height: 90;
+  border-radius: 40px;
+  background-color: #ecd6ce;
+  padding: 20px
+}
+
+ul {
+list-style-type: none
+}
+
+.event-list-item:before {
+  content: '\1F32E';
+  margin-left: -10px;
+  margin-right: 5px;
+  font-size: 20px
+  }
+
+
+
 /* .delete-ingredient:hover {
   background-color: red
 } */

@@ -135,6 +135,8 @@ export class RecipeSearchForm extends Component {
                       height="100"
                       width="100">
                       ❣️ Favorite! </button>
+                      <button onClick={event => this.addEvent(event, data)} height="100"
+                      width="100" style={{"margin":"16px"}}> Add Event! </button>
                   </div>
                 ) : (
                   <div
@@ -184,6 +186,38 @@ export class RecipeSearchForm extends Component {
           this.setState({ isMissingIngredients: true });
         };
       };
+
+      
+// Add Recipe to Events
+
+addEvent = (event, recipe) => {
+  // event.stopPropagation();
+  alert(`Added ${recipe.title} to Events !`);
+  console.log( this.props);
+
+  fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json", 
+      "Authorization": localStorage.token
+    },
+    body: JSON.stringify({
+      user_id: this.props.userId,
+      date: "",
+      time: "",
+      location: "",
+      content: recipe.title,
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log("event: ", recipe);
+    })
+  //   .catch(error => {
+  //     console.log(error.message);
+  //   });
+};
 
       //Add to Favorites
 

@@ -27,7 +27,7 @@ export class FavoriteRestaurants extends Component {
                     <h5>Price: {this.props.favePlace.price}</h5>
                     <h5>Rating: {this.props.favePlace.rating}</h5>
                     <img src={`${this.props.favePlace.image}`} height="200px" width="250px" ></img>
-                    <h6><a href={this.props.favePlace.url}>Visit Yelp Page</a></h6><br/>
+                    <h6><a href={this.props.favePlace.url} target="_blank">Visit Yelp Page</a></h6><br/>
                     <Button className="delete-fave" data-id={`${this.props.favePlace.id}`}
                     onClick={this.deleteAnswer} 
                     >❌ Delete </Button>

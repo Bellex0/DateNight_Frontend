@@ -3,13 +3,22 @@ import {Card, Button, Form} from 'semantic-ui-react';
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 import DateTimePicker from 'react-datetime-picker';
 import TimePicker from 'react-time-picker';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+import MomentLocaleUtils, {formatDate, parseDate,} from 'react-day-picker/moment';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import moment from 'moment';
 
 
 export class Events extends Component {
 
     state = {
-        date: new Date(),
-        time: "", 
+        date: "",
+        // .toLocaleDateString(),
+        time: "",
+        // .toLocaleTimeString(), 
         visible: true,
         modalIsOPen: false
     }
@@ -36,37 +45,50 @@ export class Events extends Component {
         })
     }
 
-    // updateEvent = (event) => {
-    //     console.log("up")
-    //         event.preventDefault
-    //     fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events/${this.props.event.id}`), {
-    //         method: "PATCH",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json", 
-    //             "Authorization": localStorage.token
-    //           },
-    //           body: JSON.stringify({
-    //             updateddate: this.state.date,
-    //             updatedtime: this.state.time
-    //           })
-    //           .then(res => res.json())
-    //           .then(data => {
-    //             this.setState({
-    //                 date: data.updateddate,
-    //                 time: data.updatedtime
-    //           })
-    //         })
-    //     }}
+    updateEvent = (event) => {
+        console.log("up")
+        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events/${this.props.event.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json", 
+                "Authorization": localStorage.token
+              },
+              body: JSON.stringify({
+                date: this.state.date,
+                time: this.state.time
+              })
+            })
+              .then(res => res.json())
+              .then(data => {
+                  console.log(data)
+            //     this.setState({
+            //         date: data.date,
+            //         time: data.time
+            //   })
+            
+        
+        }
+        )
+    }
+    
+    timeChange = time => this.setState({ time: time })
+    
     
       
 
-// handleChange = event => {
-//     const { name, value } = event.target;
+// handleChange = (date)  => {
 //     this.setState({ [name]: value });
 //   }
 
-    onChange = time => this.setState({ time })
+            handleChange = (date) => {
+
+                this.setState({
+                    date: date
+                })
+            }
+
+    // onChange = time => this.setState({ time })
 //   handleSubmit = event => {
 //       console.log(event)
 //     event.preventDefault();
@@ -80,19 +102,19 @@ export class Events extends Component {
     render() {
 
         let eventTime = this.props.event.time ? (
-             this.props.event.time)
+            moment(this.props.event.time).format('hh.mm A'))
             : 
             null
 
         let eventDate = this.props.event.date ? (
-            this.props.event.date)
+            moment(this.props.event.date).format('ddd MM/DD/YY'))
            : 
            null     
         
         return (
                 <div style={{"margin-top":"20px"}}>
-               <ul className="events-list">
-                <li>
+               <ul className="events-list" >
+                <li className="event-list-item">
                {this.props.event.content} <br/>
                {this.props.event.location} <br/>
                {eventDate} {eventTime}
@@ -110,28 +132,35 @@ export class Events extends Component {
     <ModalBody>
         {/* <Form onSubmit={(e) => this.updateEvent(e)}> */}
                     
-                      <DateTimePicker
-                      onChange={this.onChange}
-                      value={this.state.date}
+                      <DatePicker
+                      dateFormat="MM-dd-yyyy"
+                      onChange={this.handleChange}
+                      selected={this.state.date}
+                      isClearable={true}
                     />
-                        // fluid
-                        // label="Date"
-                        // name="date"
-                        // value={this.state.date}
-                        // onChange={this.onChange}
-                    />
-                    <TimePicker
-                        // fluid
-                        // label="Time"
-                        // name="date"
-                        value={this.state.time}
-                        onChange={this.onChange}
+
+                    {/* {/* <DayPickerInput
+        formatDate={formatDate}
+        parseDate={parseDate}
+        placeholder={`${formatDate(new Date())}`}
+      /> */}
+                       
+                    
+                    <DatePicker
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeIntervals={15}
+                    dateFormat="h:mm aa"
+                    selected={this.state.time}
+                    onChange={this.timeChange}
+                    isClearable={true} 
                     />
                     {/* <Form.Field control={Button}>Submit</Form.Field> */}
-                {/* <Button id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px"}}>Submit</Button> */}
+                
                 {/* </Form> */}
     </ModalBody>
     <ModalFooter>
+    <Button onClick={this.updateEvent} id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px"}}>Submit</Button>
     </ModalFooter>
     </Modal>
     
@@ -139,6 +168,9 @@ export class Events extends Component {
            
         )
     }
+
 }
+        
+
 
 export default Events

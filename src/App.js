@@ -11,6 +11,8 @@ import RestaurantsContainer from './containers/RestaurantsContainer';
 import RecipesContainer from './containers/RecipesContainer'; 
 import FavoriteRestaurantsContainer from './containers/FavoriteRestaurantsContainer'; 
 
+console.log(process.env.REACT_APP_SPOON_API_KEY)
+
 
 
 class App extends React.Component {
@@ -99,13 +101,13 @@ class App extends React.Component {
          
       <Switch>
         <Route exact path='/' render={(routerProps) => {return <Login gotToken={this.gotToken} {...routerProps}/>}} />
-        <Route path={'/main'} render={routerProps => <MainPage {...routerProps} username={this.state.username}/>} />
-        <Route path={'/profile'} render={routerProps => <Profile {...routerProps} username={this.state.username}/>} />
-        <Route path={'/events'} component={EventsContainer} />
-        <Route path={'/favorite_recipes'} component={FavoritesContainer} />
-        <Route path={'/favorite_places'} component={FavoriteRestaurantsContainer} />
-        <Route path={'/restaurants'} component={RestaurantsContainer} />
-        <Route path={'/recipes'} component={RecipesContainer} />
+        <Route exact path={'/main'} render={routerProps => <MainPage {...routerProps} username={this.state.username}/>} />
+        <Route exact path={'/profile'} render={routerProps => <Profile {...routerProps} username={this.state.username}/>} />
+        <Route exact path={'/events'} component={EventsContainer} />
+        <Route exact path={'/favorite_recipes'} component={FavoritesContainer} />
+        <Route exact path={'/favorite_places'} component={FavoriteRestaurantsContainer} />
+        <Route exact path={'/restaurants'} component={RestaurantsContainer} />
+        <Route exact path={'/recipes'} component={RecipesContainer} />
 
       </Switch>
      

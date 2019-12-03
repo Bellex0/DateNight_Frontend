@@ -9,8 +9,12 @@ export class FavoritesContainer extends Component {
         token: localStorage.token
     }
 
-    componentDidMount = () => {
-        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorites`)
+    componentDidMount () {
+        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorites`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
         .then(res => res.json())
         .then(favoritesData => {
             console.log(favoritesData)
