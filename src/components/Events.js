@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Card, Button, Form} from 'semantic-ui-react';
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
-import DateTimePicker from 'react-datetime-picker';
-import TimePicker from 'react-time-picker';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
@@ -64,6 +62,7 @@ export class Events extends Component {
                     
               })
               this.props.updateDate(data)
+              this.toggleModal()
         
         }
         )
@@ -139,7 +138,7 @@ export class Events extends Component {
     <ModalHeader toggle={this.toggleModal.bind(this)}>Enter Date and Time for this Event</ModalHeader>
     <ModalBody>
         {/* <Form onSubmit={(e) => this.updateEvent(e)}> */}
-                    
+                    <div style={{"display":"inline-flex", "margin-right":"20px"}}>
                       <DatePicker
                       placeholderText="Date"
                       dateFormat="MM-dd-yyyy"
@@ -147,13 +146,14 @@ export class Events extends Component {
                       selected={this.state.date}
                       isClearable={true}
                     />
+                    </div>
 
                     {/* {/* <DayPickerInput
         formatDate={formatDate}
         parseDate={parseDate}
         placeholder={`${formatDate(new Date())}`}
       /> */}
-                    
+                    <div style={{"display":"inline-flex"}}>
                     <DatePicker
                     placeholderText="Time"
                     showTimeSelect
@@ -164,6 +164,7 @@ export class Events extends Component {
                     onChange={this.timeChange}
                     isClearable={true} 
                     />
+                    </div>
 
                    
                         {/* <input

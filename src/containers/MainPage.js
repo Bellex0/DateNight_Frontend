@@ -37,7 +37,7 @@ export class MainPage extends Component {
         // this.state.favorites.map(favoriteRecipe => <Favorites favorite={favoriteRecipe}/>)
 
         return (
-            <Container>
+            <Container className="container" >
                 <h1>Hey {this.props.username}!</h1>
                 <h3>What's the plan for tonight?</h3><br/>
                 <div style={{"margin-top":"60px"}}>

@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import '../Styles/Login.css'
+
 
 export class Login extends Component {
     state = {
@@ -8,7 +10,7 @@ export class Login extends Component {
         errors: [],
         name: "", 
         location: "",
-        image: ""
+        // image: ""
       }
     
       handleChange = event => {
@@ -16,6 +18,14 @@ export class Login extends Component {
           [event.target.name]: event.target.value
         })
       }
+
+      // addPhoto = (photo) => 
+      // this.setState({
+      //   image: photo
+      // })
+
+
+      fileInput = React.createRef();
     
       logInSubmitted = (event) => {
         event.preventDefault()
@@ -42,21 +52,24 @@ export class Login extends Component {
         })
         // when fetch is done...get token
       }
+
+      //   username: this.state.username, 
+          //   password: this.state.password,
+          //   name: this.state.name,
+          //   location: this.state.location, 
+          //   image: this.state.image
     
       signupSubmit = (event) => {
         event.preventDefault()
+        let formData = new FormData()
+        formData.append('username', this.state.username)
+        formData.append('password', this.state.password)
+        formData.append('name', this.state.name)
+        formData.append('location', this.state.location)
+        formData.append('image', this.fileInput.current.files[0])
         fetch("http://localhost:3000/signup", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            username: this.state.username, 
-            password: this.state.password,
-            name: this.state.name,
-            location: this.state.location, 
-            image: this.state.image
-          })
+          body: formData
         }).then(res => res.json())
         .then(data => {
           if (data.errors) {
@@ -72,14 +85,17 @@ export class Login extends Component {
         // when fetch is done...get token
       }
 
-      handleFile = e => {
-        this.setState({ [e.target.name]: e.target.files[0] });
-      }
+    //  imageSubmit = (e) => {
+    //    e.preventDefault()
+       
+    //    formData.append('image', this.fileInput.current.files[0])
+    //    this.addPhoto(formData)
+    //  }
 
     render() {
         return <>
-    <h1 class="animated infinite pulse delay-2s" id="title" style={{"font-size": "48px" }} >Date Night🌹</h1>
-    <h2 id="title" style={{"font-size": "32px" }}>"What do you want to eat tonight?" "Idk babe" </h2><br/>
+    <h1 class="animated infinite flash delay-5s" id="title" style={{"font-size": "50px" }} >Date Night🌹</h1>
+    <h2 id="title" style={{"font-size": "32px" }}>"What do you want to eat?" "Idk" </h2><br/>
       <ul>
         {
           this.state.errors.map(error => <li>{ error }</li>)
@@ -156,6 +172,12 @@ export class Login extends Component {
                     name="location" 
                     value={ this.state.location } />   
             </div>
+            <div>
+            <label>Image</label>
+            <input type="file" name="image" required ref={this.fileInput} />
+            </div>
+          
+          
             {/* <div> */}
             {/* <label>Avatar</label>   
             < input id="sign_up_avatar" 
@@ -166,6 +188,7 @@ export class Login extends Component {
             </div> */}
             <input class="submit-button" style={{"font-family":"Emilys Candy", "font-size":"16 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} type="submit" />
           </form>
+        
         </section>
       }
     </>

@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import Logo from './datenight.jpg'
 import './App.css';
 import { Route, Switch, withRouter, NavLink } from 'react-router-dom';
 import Login from './components/Login';
@@ -10,6 +11,8 @@ import FavoritesContainer from './containers/FavoritesContainer';
 import RestaurantsContainer from './containers/RestaurantsContainer'; 
 import RecipesContainer from './containers/RecipesContainer'; 
 import FavoriteRestaurantsContainer from './containers/FavoriteRestaurantsContainer'; 
+import FourOhFour from './components/FourOhFour';
+
 
 console.log(process.env.REACT_APP_SPOON_API_KEY)
 
@@ -61,6 +64,10 @@ class App extends React.Component {
     this.props.history.go(-1)
   }
 
+  home = () => {
+    this.props.history.push('/main')
+  }
+
   render() {
     const name = this.state.username
   return (
@@ -69,23 +76,25 @@ class App extends React.Component {
             
               <nav class="navbar" style={{'margin-bottom': '24px'}}>
                 
-                    <div className= "logo1" style = {{"width":"20px"}} >
-                        <img src="rhetort.jpg" width="130" height="60" style={{"margin":"-9px"}}></img>
+                    <div className= "logo1"  >
+                    
+                        <img src={Logo} width="160" height="65" style={{"margin":"-9px"}} onClick={this.home}></img>
                     </div>
                 <ul class="main-nav" id="js-menu">
-                  <li>
-                  {this.state.username ? <a  href="/main" class="nav-links"> Home
+                    <li>
+                  {this.state.username ? <a href="/main" class="nav-links"> {this.state.username} 
                        </a>: null}
-                    {/* <a  href="/main" class="nav-links"> Home
-                       </a> */}
-                  </li>
+                     {/* <a  href="/main" class="nav-links"> Home
+                       </a>  */}
+                   </li> 
                  
                   <li>
-                    <a onClick={this.logOutClicked} href="#" class="nav-links">Log Out </a>
+                  {this.state.username ? <a onClick={this.goBack} href="#" class="nav-links"> Go Back </a>: null}
                   </li>
                   <li>
-                    <a onClick={this.goBack} href="#" class="nav-links"> Go Back </a>
+                    {this.state.username ? <a onClick={this.logOutClicked} href="#" class="nav-links">Log Out </a>: null}
                   </li>
+                 
                   <li>
                   
                   {/* <a href= class="nav-links">Git Backend </a> */}
@@ -108,6 +117,7 @@ class App extends React.Component {
         <Route exact path={'/favorite_places'} component={FavoriteRestaurantsContainer} />
         <Route exact path={'/restaurants'} component={RestaurantsContainer} />
         <Route exact path={'/recipes'} component={RecipesContainer} />
+        <Route component={FourOhFour}/>
 
       </Switch>
      

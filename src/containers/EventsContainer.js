@@ -14,8 +14,8 @@ export class EventsContainer extends Component {
         .then(eventsData => {
             // if (eventsData.includes(event.date !== null))
 
-            let eventDates= eventsData.filter(event => event.date !== null)
-            let events =  eventDates.sort(
+            // let eventDates= eventsData.filter(event => event.date !== null)
+            let events =  this.state.events.sort(
                 (a, b) => new Date(...a.date.split('/').reverse()) - new Date(...b.date.split('/').reverse()))
                 
             console.log(eventsData)

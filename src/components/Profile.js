@@ -42,11 +42,26 @@ export class Profile extends Component {
     }
 }
 
+// updateUser = () => 
+// fetch('http://localhost:3000/profile', {
+//     method: 'PATCH', 
+//     headers: 
+// })
+
+         
+
+
+
     render() {
+        console.log(this.state)
         return (
             <div>
+
                 <h1 style={{"font-family":"Emilys Candy"}}>Profile</h1>
                 <img src={this.state.image} width="200 px" height="250 px"></img>
+                
+
+
                 <h5 style={{"margin-top":"30px"}}>Username: {this.state.username}</h5>
                 <h5>Name: {this.state.name}</h5>
                 <h5>Location: {this.state.location}</h5>

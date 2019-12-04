@@ -52,7 +52,10 @@ export class RestaurantSearchForm extends Component {
                 (rest1, rest2) => rest1.distance - rest2.distance
             )
             this.setState({
-                restaurants: yelpData.businesses
+                restaurants: yelpData.businesses,
+                term: "", 
+                location: "",
+                category: ""
             })
             console.log(yelpData.businesses)
     
@@ -72,8 +75,8 @@ export class RestaurantSearchForm extends Component {
                 <div style={{'display': 'flex', 'flexDirection': 'column'}}>
                     <img src={`${restaurant.image_url}`} style={{"width":"300px", "height":"300px", "margin-top":"16px"}} ></img>
                     <div style={{'display': 'flex', 'flexDirection': 'row'}}>
-                        <button onClick={event => this.favoritePlace(event, restaurant)} style={{"margin":"16px", "border-radius":"50px"}}> ❣️ Favorite! </button>
-                        <button onClick={event => this.addEvent(event, restaurant)} style={{"margin":"16px", "border-radius":"50px"}}> 🎊 Add Event! </button>
+                        <button onClick={event => this.favoritePlace(event, restaurant)} style={{"margin":"16px", "border-radius":"40px", "padding":"10px"}}> ❣️ Favorite! </button>
+                        <button onClick={event => this.addEvent(event, restaurant)} style={{"margin":"16px", "border-radius":"40px", "padding":"10px"}}> 🎊 Add Event! </button>
                     </div>
                 </div>
                 
@@ -167,38 +170,30 @@ export class RestaurantSearchForm extends Component {
             //     }
             //   }
             
-    
-      
-
-    
 
 
-        
+setSortTerm = (term) => {
+    this.setState({
+      sortTerm: term
+    })
+  }
 
- 
-
-// setSortTerm = (term) => {
-//     this.setState({
-//       sortTerm: term
-//     })
-//   }
-
-  // Sort the Places
-//   whichPlacesToRender = () => {
-//       console.log("sort")
-//       console.log("copiedPlaces")
-//     let copiedPlaces = [...this.state.foundPlaces]
-//     if (this.state.sortTerm === "Price") {
-//         copiedPlaces.sort((placeA, placeB) => {
-//           return placeA.price - placeB.price
-//         })
-//       } else if (this.state.sortTerm === "Rating") {
-//         copiedPlaces.sort((placeA, placeB) => {
-//           return placeA.rating.localeCompare(placeB.rating)
-//         })
-//       }
-//       return copiedPlaces
-//     }
+//   Sort the Places
+  whichPlacesToRender = () => {
+      console.log("sort")
+      console.log("copiedPlaces")
+    let copiedPlaces = [...this.state.foundPlaces]
+    if (this.state.sortTerm === "Price") {
+        copiedPlaces.sort((placeA, placeB) => {
+          return placeA.price - placeB.price
+        })
+      } else if (this.state.sortTerm === "Rating") {
+        copiedPlaces.sort((placeA, placeB) => {
+          return placeA.rating.localeCompare(placeB.rating)
+        })
+      }
+      return copiedPlaces
+    }
 
     render() {
        
@@ -208,7 +203,7 @@ export class RestaurantSearchForm extends Component {
                     <Form.Group widths='equal'>
                     <Form.Input
                         fluid
-                        placeholder= "dinner"
+                        placeholder= "sushi, cocktails, brunch"
                         label="Looking for..."
                         name="term"
                         value={this.state.term}
@@ -233,9 +228,9 @@ export class RestaurantSearchForm extends Component {
                     </Form.Group>
                  
                   
-                <Button onClick={this.findPlace} id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px", "font-size":"16px"}}>Let's go! 💃🏻</Button>
+                <Button onClick={this.findPlace} id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px", "font-size":"16px"}}>Find me cool places! 💃🏻</Button>
                 </Form>
-{/* 
+
                 <Form onSubmit={this.handleOtherSubmit} >
                     <Form.Group inline>
                     <label>Sort by: </label>
@@ -247,20 +242,22 @@ export class RestaurantSearchForm extends Component {
                         onChange={this.handleSort}
                     />
                     
-                    {/* {(evt) => this.setSortTerm(evt.target.value)} */}
-                    {/* <Form.Field
+                    {(evt) => this.setSortTerm(evt.target.value)} */}
+                     <Form.Field
                      control= {Radio}
                         label='Rating'
                         value='Rating'
                         checked={this.state.sortTerm === 'Rating'}
                         onChange={this.handleSort}
-                    />  */}
-                    {/* </Form.Group> */}
+                    />  
+                    </Form.Group>
+                    </Form>
                    
                 
                 <div style={{'display': 'flex', 'flexDirection': 'row', 'justifyContent': 'center', 'flex-wrap': 'wrap'}}>
         {this.state.foundPlaces}
         {/* {this.sortFood()} */}
+        {/* {this.whichPlacesToRender()} */}
         {/* {foundPlaces} */}
         </div>
         

@@ -431,11 +431,12 @@ export class RecipeSearchForm extends Component {
                         <div className="ingredient-box">
                             {this.renderIngredient()}
                             <Button
+                            style={{"margin-top":"16px"}}
                                 href="/#"
                                 className="search"
                                 onClick={event => this.findRecipe(event)}
                             >
-                                Get Recipes! 
+                                Get Yummy Recipes! 😋
                             </Button>
             </div>
             )}
