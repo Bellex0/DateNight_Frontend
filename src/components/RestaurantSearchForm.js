@@ -58,16 +58,25 @@ export class RestaurantSearchForm extends Component {
     
     
         const foundPlaces = this.state.restaurants.map(restaurant => 
-            <div style={{"borderStyle":"solid", "margin": "20px"}}>
-                <h5>{Number((convert(`${restaurant.distance}`).from('m').to('mi')).toFixed(1))} miles away</h5>
-                <h2>{restaurant.name}</h2>
-                <h4>{restaurant.location.display_address[0]} {restaurant.location.display_address[1]} {restaurant.location.display_address[2]} </h4>
-                <h4>Price: {restaurant.price}</h4>
-                <h4>Rating: {restaurant.rating}</h4>
-                <h6><a href={restaurant.url} target="_blank">Visit Yelp Page</a></h6>
-                <img src={`${restaurant.image_url}`} style={{"width":"300px", "height":"300px"}} ></img>
-                <button onClick={event => this.favoritePlace(event, restaurant)} style={{"margin":"16px"}}> ❣️ Favorite! </button>
-                <button onClick={event => this.addEvent(event, restaurant)} style={{"margin":"16px"}}> Add Event! </button>
+            <div style={{"width": "60%", "borderStyle":"solid", "margin": "20px", "display": "flex", "flexDirection": "row", "justifyContent": "center"}}>
+                <div style={{'margin-right': '24px', "margin-top":"16px"}}>
+                    <h5>{Number((convert(`${restaurant.distance}`).from('m').to('mi')).toFixed(1))} miles away</h5>
+                    <h2>{restaurant.name}</h2>
+                    <h4>{restaurant.location.display_address[0]} {restaurant.location.display_address[1]} {restaurant.location.display_address[2]} </h4>
+                    <iframe width="300" height="170" frameborder="0" marginheight="0" marginwidth="0" 
+                    src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_API_KEY}&q=${restaurant.coordinates.latitude},${restaurant.coordinates.longitude}`} />
+                    <h4>Price: {restaurant.price}</h4>
+                    <h4>Rating: {restaurant.rating}</h4>
+                    <h6><a href={restaurant.url} target="_blank">Visit Yelp Page</a></h6>
+                </div>
+                <div style={{'display': 'flex', 'flexDirection': 'column'}}>
+                    <img src={`${restaurant.image_url}`} style={{"width":"300px", "height":"300px", "margin-top":"16px"}} ></img>
+                    <div style={{'display': 'flex', 'flexDirection': 'row'}}>
+                        <button onClick={event => this.favoritePlace(event, restaurant)} style={{"margin":"16px", "border-radius":"50px"}}> ❣️ Favorite! </button>
+                        <button onClick={event => this.addEvent(event, restaurant)} style={{"margin":"16px", "border-radius":"50px"}}> 🎊 Add Event! </button>
+                    </div>
+                </div>
+                
                 
             </div>
         )
@@ -79,7 +88,7 @@ export class RestaurantSearchForm extends Component {
     
     addEvent = (event, restaurant) => {
         // event.stopPropagation();
-        alert(`Added ${restaurant.name} to Events !`);
+        alert(`Added ${restaurant.name} to Events 🎈!`);
         console.log( this.props);
     
         fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`, {
@@ -249,7 +258,7 @@ export class RestaurantSearchForm extends Component {
                     {/* </Form.Group> */}
                    
                 
-                <div>
+                <div style={{'display': 'flex', 'flexDirection': 'row', 'justifyContent': 'center', 'flex-wrap': 'wrap'}}>
         {this.state.foundPlaces}
         {/* {this.sortFood()} */}
         {/* {foundPlaces} */}

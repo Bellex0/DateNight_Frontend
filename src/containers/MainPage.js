@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import {Button} from 'semantic-ui-react';
 import {Container, Row, Col} from 'reactstrap';
 import '../App.css'
-import './MainPage.css'
+import '../Styles/MainPage.css'
 
 
 

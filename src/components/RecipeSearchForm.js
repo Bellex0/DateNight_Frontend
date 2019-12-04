@@ -128,7 +128,7 @@ export class RecipeSearchForm extends Component {
                       height="231"
                       width="312"
                     />
-                    <button style={{"margin-right":"10px"}} onClick={this.toggleModal.bind(this)}>See Recipe Details</button>
+                    <button style={{"margin-right":"10px"}} onClick={this.toggleModal.bind(this)}> 👀See Recipe Details</button>
                     <button
                       className="favorite-button"
                       onClick={event => this.favoriteRecipe(event, data)}
@@ -136,7 +136,7 @@ export class RecipeSearchForm extends Component {
                       width="100">
                       ❣️ Favorite! </button>
                       <button onClick={event => this.addEvent(event, data)} height="100"
-                      width="100" style={{"margin":"16px"}}> Add Event! </button>
+                      width="100" style={{"margin":"16px"}}> 🎊 Add Event!  </button>
                   </div>
                 ) : (
                   <div
@@ -165,13 +165,15 @@ export class RecipeSearchForm extends Component {
                       height="231"
                       width="312"
                     /><br/>
-                    <button style={{"margin-right":"10px"}} onClick={this.toggleModal.bind(this)}>See Recipe Details</button>
+                    <button style={{"margin-right":"10px"}} onClick={this.toggleModal.bind(this)}> 👀 See Recipe Details</button>
                     <button
                       className="favorite-button"
                       onClick={event => this.favoriteRecipe(event, data)}
                       height="100"
                       width="100">
                       ❣️ Favorite! </button>
+                      <button onClick={event => this.addEvent(event, data)} height="100"
+                      width="100" style={{"margin":"16px"}}> 🎊Add Event!  </button>
                     {missingStuff()}
                   </div>
                 )
@@ -190,34 +192,34 @@ export class RecipeSearchForm extends Component {
       
 // Add Recipe to Events
 
-addEvent = (event, recipe) => {
-  // event.stopPropagation();
-  alert(`Added ${recipe.title} to Events !`);
-  console.log( this.props);
+// addEvent = (event, recipe) => {
+//   // event.stopPropagation();
+//   alert(`Added ${recipe.title} to Events 🎈!`);
+//   console.log( this.props);
 
-  fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json", 
-      "Authorization": localStorage.token
-    },
-    body: JSON.stringify({
-      user_id: this.props.userId,
-      date: "",
-      time: "",
-      location: "",
-      content: recipe.title,
-    })
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log("event: ", recipe);
-    })
-  //   .catch(error => {
-  //     console.log(error.message);
-  //   });
-};
+//   fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "Accept": "application/json", 
+//       "Authorization": localStorage.token
+//     },
+//     body: JSON.stringify({
+//       user_id: this.props.userId,
+//       date: "",
+//       time: "",
+//       location: "",
+//       content: recipe.title,
+//     })
+//   })
+//     .then(res => res.json())
+//     .then(data => {
+//       console.log("event: ", recipe);
+//     })
+//   //   .catch(error => {
+//   //     console.log(error.message);
+//   //   });
+// };
 
       //Add to Favorites
 
@@ -254,7 +256,7 @@ addEvent = (event, recipe) => {
 
       addEvent = (event, recipeData) => {
         event.stopPropagation();
-        alert(`Added ${recipeData.title} to Events !`);
+        alert(`Added ${recipeData.title} to Events 🎈!`);
         console.log( this.props);
     
         fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`, {
@@ -267,6 +269,8 @@ addEvent = (event, recipe) => {
           body: JSON.stringify({
             user_id: this.props.userId,
             content: recipeData.title,
+            date: "",
+            time: ""
           })
         })
           .then(res => res.json())
@@ -426,13 +430,13 @@ addEvent = (event, recipe) => {
                     {this.state.ingredientList.length > 0 && (
                         <div className="ingredient-box">
                             {this.renderIngredient()}
-                            <a
+                            <Button
                                 href="/#"
                                 className="search"
                                 onClick={event => this.findRecipe(event)}
                             >
-                                Do your magic!
-                            </a>
+                                Get Recipes! 
+                            </Button>
             </div>
             )}
              </div>

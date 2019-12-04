@@ -27,6 +27,21 @@ export class Profile extends Component {
         }
       }
 
+      deleteUser = () => {
+        console.log("delete");
+        if (!window.confirm("Are you sure you want to delete your account? You will lose all precious data 😱")) {
+            this.props.history.push('/main')
+        }
+        else {
+        fetch(`http://localhost:3000/users/${localStorage.loggedInUserId}`, {
+            method: "DELETE",
+        })
+        .then(r => {
+            this.props.history.push('/')
+        })
+    }
+}
+
     render() {
         return (
             <div>
@@ -35,6 +50,7 @@ export class Profile extends Component {
                 <h5 style={{"margin-top":"30px"}}>Username: {this.state.username}</h5>
                 <h5>Name: {this.state.name}</h5>
                 <h5>Location: {this.state.location}</h5>
+                <button onClick={this.deleteUser}> 🚫 Delete Account</button>
 
             
                 </div>

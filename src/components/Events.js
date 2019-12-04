@@ -5,10 +5,6 @@ import DateTimePicker from 'react-datetime-picker';
 import TimePicker from 'react-time-picker';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
-import MomentLocaleUtils, {formatDate, parseDate,} from 'react-day-picker/moment';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
 import moment from 'moment';
 
 
@@ -16,11 +12,10 @@ export class Events extends Component {
 
     state = {
         date: "",
-        // .toLocaleDateString(),
-        time: "",
-        // .toLocaleTimeString(), 
+        time: "", 
         visible: true,
-        modalIsOPen: false
+        modalIsOPen: false,
+        location: ""
     }
 
     toggleAlert() {
@@ -41,7 +36,7 @@ export class Events extends Component {
             method: "DELETE",
         })
         .then(r => {
-            this.props.mount()
+            this.props.delete(this.props.event.id)
         })
     }
 
@@ -56,17 +51,19 @@ export class Events extends Component {
               },
               body: JSON.stringify({
                 date: this.state.date,
-                time: this.state.time
+                time: this.state.time,
+                // location: this.state.location
               })
             })
               .then(res => res.json())
               .then(data => {
                   console.log(data)
-            //     this.setState({
-            //         date: data.date,
-            //         time: data.time
-            //   })
-            
+                this.setState({
+                    date: new Date(data.date),
+                    time: new Date(data.time),
+                    
+              })
+              this.props.updateDate(data)
         
         }
         )
@@ -87,6 +84,14 @@ export class Events extends Component {
                     date: date
                 })
             }
+
+            locationChange = (e) => {
+                e.stopPropagation()
+                console.log(e)
+                this.setState({
+                    location: e
+            })
+        }
 
     // onChange = time => this.setState({ time })
 //   handleSubmit = event => {
@@ -110,8 +115,11 @@ export class Events extends Component {
             moment(this.props.event.date).format('ddd MM/DD/YY'))
            : 
            null     
+
+         
         
         return (
+
                 <div style={{"margin-top":"20px"}}>
                <ul className="events-list" >
                 <li className="event-list-item">
@@ -119,7 +127,7 @@ export class Events extends Component {
                {this.props.event.location} <br/>
                {eventDate} {eventTime}
                <button className="delete-event" data-id={`${this.props.event.id}`}
-               onClick={this.deleteEvent} 
+               onClick={this.props.delete} 
                >❌ Delete </button>
                <button className="update-event" data-id={`${this.props.event.id}`}
                onClick={this.toggleModal.bind(this)}
@@ -133,6 +141,7 @@ export class Events extends Component {
         {/* <Form onSubmit={(e) => this.updateEvent(e)}> */}
                     
                       <DatePicker
+                      placeholderText="Date"
                       dateFormat="MM-dd-yyyy"
                       onChange={this.handleChange}
                       selected={this.state.date}
@@ -144,9 +153,9 @@ export class Events extends Component {
         parseDate={parseDate}
         placeholder={`${formatDate(new Date())}`}
       /> */}
-                       
                     
                     <DatePicker
+                    placeholderText="Time"
                     showTimeSelect
                     showTimeSelectOnly
                     timeIntervals={15}
@@ -155,12 +164,23 @@ export class Events extends Component {
                     onChange={this.timeChange}
                     isClearable={true} 
                     />
+
+                   
+                        {/* <input
+                         placeholder="Location"
+                         name="location"
+                         value={this.state.location}
+                         onChange={this.locationChange}
+                        /> */}
+                           
+                       
+                   
                     {/* <Form.Field control={Button}>Submit</Form.Field> */}
                 
                 {/* </Form> */}
     </ModalBody>
     <ModalFooter>
-    <Button onClick={this.updateEvent} id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px"}}>Submit</Button>
+    <Button onClick={this.updateEvent} id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px",}}>Submit</Button>
     </ModalFooter>
     </Modal>
     
