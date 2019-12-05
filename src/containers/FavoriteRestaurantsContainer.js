@@ -35,7 +35,7 @@ export class FavoriteRestaurantsContainer extends Component {
 
         return (
             <div>
-                <h1 style={{"font-family":"Emilys Candy"}}>Favorite Places</h1>
+                <h1 style={{"color":"#f1e3f1", "font-family":"Emilys Candy", "font-size":"40px"}}>Favorite Places</h1>
                 
                 {placeList}
                 

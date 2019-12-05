@@ -7,7 +7,6 @@ import {Link} from 'react-router-dom';
 import {Button} from 'semantic-ui-react';
 import {Container, Row, Col} from 'reactstrap';
 import '../App.css'
-import '../Styles/MainPage.css'
 
 
 
@@ -37,9 +36,11 @@ export class MainPage extends Component {
         // this.state.favorites.map(favoriteRecipe => <Favorites favorite={favoriteRecipe}/>)
 
         return (
+            <div className="background">
             <Container className="container" >
-                <h1>Hey {this.props.username}!</h1>
-                <h3>What's the plan for tonight?</h3><br/>
+                <div >
+                <h1 id="normal" style={{"color":"#f1e3f1", "font-size":"80px", "font-weight":"bold", "width":"500"}}>Hey {this.props.username}!</h1>
+                <h3 id="normal" className="animated infinite pulse" style={{"color":"#f1e3f1", "font-size":"46px", "font-weight":"bold", "width":"500"}}> What's the plan for tonight?</h3><br/>
                 <div style={{"margin-top":"60px"}}>
                     <Row>
                <Col><Link to="/recipes"><button className="main-buttons" style={{"padding":"20px", "marginBottom":"20px", "font-size": "36px"}} > Eat In 🏠🍝 </button></Link></Col>
@@ -53,6 +54,7 @@ export class MainPage extends Component {
                <Col><Link to="/events"><button className="main-buttons" style={{ "marginBottom":"20px", "font-size": "36px"}} > My Events 🎉</button></Link></Col>
                <Col><Link to="/profile"><button className="main-buttons" style={{ "marginBottom":"20px", "font-size": "36px"}}> View Profile 👓</button></Link></Col>
                </Row>
+               </div>
                </div>
                
                
@@ -69,6 +71,7 @@ export class MainPage extends Component {
                 
 
  </Container>
+ </div>
         )
     }
 }

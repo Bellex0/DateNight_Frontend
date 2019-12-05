@@ -12,10 +12,11 @@ export class EventsContainer extends Component {
         fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`)
         .then(res => res.json())
         .then(eventsData => {
+           
             // if (eventsData.includes(event.date !== null))
 
             // let eventDates= eventsData.filter(event => event.date !== null)
-            let events =  this.state.events.sort(
+            let events = eventsData.sort(
                 (a, b) => new Date(...a.date.split('/').reverse()) - new Date(...b.date.split('/').reverse()))
                 
             console.log(eventsData)
@@ -24,6 +25,7 @@ export class EventsContainer extends Component {
             })
         })
     }
+
 
     mount =() => {
         this.componentDidMount()
@@ -57,11 +59,12 @@ export class EventsContainer extends Component {
         let eventList = this.state.events.length > 0 ? (
             this.state.events.map(event => { return (<Events event={event} mount={this.mount} updateDate={this.updateTimeDate} delete={this.deleteEvent}/>)}))
             : 
-            (<h4 style={{"margin-top": "40px"}}>You don't have any events right now. Get to it!</h4>)
+            (<h4 style={{"color":"#f1e3f1", "margin-top": "40px"}}>You don't have any events right now. Get to it!</h4>)
 
         return (
             <div>
-                <h1 style={{"font-family":"Emilys Candy"}}>Events</h1>
+                <h1 style={{"color":"#f1e3f1", "font-family":"Emilys Candy", "font-size":"40px"}}><b>Events</b></h1>
+                <div style={{"display": "flex", "flexDirection": "row", textAlign:"center"}}></div>
                 {eventList}
             </div>
         )

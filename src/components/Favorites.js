@@ -45,18 +45,18 @@ export class Favorites extends Component {
                 );
     
                 const recipeDetails = (
-                    <div style={{"display":"inline-block"}}>
-                  <div style={{"border-style":"solid"}} className="recipe-details">
+                    <div style={{"display":"inline-block" }}>
+                  <div className="recipe-details" style={{"font-size":"20px", "padding":"20px"}}>
                     {recipe.preparationMinutes ? (
-                      <h3>{`Prep Time : ${recipe.preparationMinutes} minutes`}</h3>
+                      <h4 id="normal"><b>{`Prep Time : ${recipe.preparationMinutes} minutes`}</b></h4>
                     ) : null}
                     {recipe.cookingMinutes ? (
-                      <h3>{`Cook Time : ${recipe.cookingMinutes} minutes`}</h3>
+                      <h4 id="normal"><b>{`Cook Time : ${recipe.cookingMinutes} minutes`}</b></h4>
                     ) : null}
-                    <h3>{`Amount of Ingredients: ${recipe.extendedIngredients.length}`}</h3>
-                    <h3>{`Number of Servings: ${recipe.servings}`}</h3>
+                    <h4 id="normal"><b>{`Amount of Ingredients: ${recipe.extendedIngredients.length}`}</b></h4>
+                    <h4 id="normal"><b>{`Number of Servings: ${recipe.servings}`}</b></h4>
                     {recipe.dishTypes.length > 0 ? (
-                      <h3>{`Category: ${recipe.dishTypes[0]}`}</h3>
+                      <h4 id="normal"><b>{`Category: ${recipe.dishTypes[0]}`}</b></h4>
                     ) : null}
                   </div>
                   
@@ -111,6 +111,8 @@ export class Favorites extends Component {
     render() {
         const ingredientList3 = this.state.apiMatchingIngredients.map(ingredient => (
             <button
+            id="normal"
+            style={{"font-size":"14px", "margin":"4px", "background-color":"white", "color":"black"}}
               type="text"
               disabled
               className="matching-ingredient"
@@ -121,6 +123,8 @@ export class Favorites extends Component {
 
         const ingredientList2 = this.state.apiMissedIngredients.map(ingredient => (
             <button
+            id="normal"
+            style={{"font-size":"14px", "margin":"4px", "background-color":"white", "color":"black"}}
               type="text"
               disabled
               className="missing-ingredient"
@@ -131,6 +135,8 @@ export class Favorites extends Component {
 
         let recipeList = this.state.recipeSteps.map(recipe => (
                 <p
+                id="normal"
+                style={{"font-size":"20px", "padding":"10px"}}
                   className="instruction-steps"
                 >{`${recipe.number} ${recipe.step}`}</p>
               )
@@ -139,18 +145,21 @@ export class Favorites extends Component {
         return (
 
             <div style={{'display': 'flex', 'flex-direction': 'row', 'flex-wrap': 'wrap', 'justify-content': 'space-around', 'align-items': 'space-around', 'height': '100%', 'margin-top': '16px'}}>
-                <Card>
-               {this.props.favorite.title}
+                <Card >
+               <h5 id="normal" style={{"font-size":"24px"}}><b>{this.props.favorite.title}</b></h5>
                <img src={`${this.props.favorite.image}`} onClick={this.faveRecipeSteps}></img>
-               <Button className="delete-fave" data-id={`${this.props.favorite.id}`}
+               <Button className="delete-fave" id="normal" style={{"font-size":"18px"}} data-id={`${this.props.favorite.id}`}
                onClick={this.deleteAnswer} 
                >❌ Delete </Button>
                </Card>
                <div>
+                 <div style={{"border-style":"solid", "text-align":"center", 'align-items': 'space-around', "margin":"20px", "background-color":"#ecd6ce" }}>
+                
                {this.state.recipeDetails}
                {ingredientList3}
                {ingredientList2}
                {recipeList}
+               </div>
                </div>
             </div>
         )

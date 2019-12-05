@@ -48,11 +48,11 @@ export class FavoritesContainer extends Component {
          let faveRecipeList = this.state.favorites.length > 0 ? (
             this.state.favorites.map(favoriteRecipe => { return (<Favorites favorite={favoriteRecipe} mount={this.mount}/>)}))
             : 
-            (<h4 style={{"margin-top": "40px"}}>You don't have any favorites right now. Get to it!</h4>)
+            (<h4 style={{"color":"#f1e3f1", "margin-top": "40px"}}>You don't have any favorites right now. Get to it!</h4>)
 
         return (
             <div >
-                 <h1 style={{"font-family":"Emilys Candy"}}>Favorite Recipes</h1>
+                 <h1 style={{"color":"#f1e3f1", "font-family":"Emilys Candy", "font-size":"40px"}}>Favorite Recipes</h1>
                  {faveRecipeList}
 
             

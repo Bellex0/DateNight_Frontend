@@ -57,15 +57,15 @@ export class Profile extends Component {
         return (
             <div>
 
-                <h1 style={{"font-family":"Emilys Candy"}}>Profile</h1>
+                <h1 style={{"color":"#f1e3f1", "font-family":"Emilys Candy"}}>Profile</h1>
                 <img src={this.state.image} width="200 px" height="250 px"></img>
                 
 
 
-                <h5 style={{"margin-top":"30px"}}>Username: {this.state.username}</h5>
-                <h5>Name: {this.state.name}</h5>
-                <h5>Location: {this.state.location}</h5>
-                <button onClick={this.deleteUser}> 🚫 Delete Account</button>
+                <h2 style={{"color":"#f1e3f1", "margin-top":"30px"}}><b>Username: {this.state.username}</b></h2>
+                <h2 style={{"color":"#f1e3f1"}}><b>Name: {this.state.name}</b></h2>
+                <h2 style={{"color":"#f1e3f1"}}><b>Location: {this.state.location}</b></h2>
+                <button id="deleteIng" style={{"font-size":"16px", "margin-left": "10px", "border-radius": "20px", "padding":"4px"}} onClick={this.deleteUser}> 🚫 Delete Account</button>
 
             
                 </div>

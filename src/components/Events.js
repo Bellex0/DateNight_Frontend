@@ -119,16 +119,17 @@ export class Events extends Component {
         
         return (
 
-                <div style={{"margin-top":"20px"}}>
-               <ul className="events-list" >
-                <li className="event-list-item">
-               {this.props.event.content} <br/>
+                <div style={{"width": "30%", "borderStyle":"solid", "margin": "20px", "display": "flex", 
+                "flexDirection": "row", "justifyContent": "center", "text-align": "center", "margin-left":"60px", "background-color":"#ecd6ce"}}>
+               <ul style={{"display":"block"}} className="events-list" >
+                <li className="event-list-item" id="normal" style={{"font-size":"24px"}}>
+               <h7 style={{"font-weight":"bold"}}>{this.props.event.content}</h7> <br/>
                {this.props.event.location} <br/>
                {eventDate} {eventTime}
-               <button className="delete-event" data-id={`${this.props.event.id}`}
+               <button className="delete-button" style={{"font-size":"16px", "margin-left": "10px", "border-radius": "20px", "padding":"4px", "background-color":"#dfddda" }} data-id={`${this.props.event.id}`}
                onClick={this.props.delete} 
                >❌ Delete </button>
-               <button className="update-event" data-id={`${this.props.event.id}`}
+               <button style={{"font-size":"16px", "margin-left": "10px", "border-radius": "20px", "padding":"4px"}} className="update-button" data-id={`${this.props.event.id}`}
                onClick={this.toggleModal.bind(this)}
                >🖊 Update </button>
                </li>

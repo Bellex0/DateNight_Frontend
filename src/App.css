@@ -2,9 +2,43 @@
   text-align: center;
 }
 
+.field label{
+  color: white !important;
+  font-family: 'Open Sans Condensed' !important;
+  font-size: "100px" !important
+}
+
+.normal {
+font-family: 'Open Sans Condensed'
+}
+
+#normal {
+  font-family: 'Open Sans Condensed'
+}
+
 .App-logo {
   height: 40vmin;
 }
+
+.recipe-buttons:hover{
+  animation-name: bounceIn;
+  animation-duration: 3s;
+  background-color: rgb(173, 166, 166);
+}
+
+.delete-button:hover{
+  animation-name: jello;
+  animation-duration: 3s;
+  background-color: #ee5342
+}
+
+.update-button:hover{
+  animation-name: jello;
+  animation-duration: 3s;
+  background-color:#82c65a
+}
+
+
 
 .App-header {
   background-color: #282c34;
@@ -29,6 +63,25 @@ button {
   border-radius: 30px;
 }
 
+#deleteIng:hover {
+  background-color: #ee5342;
+  font-weight: bold; 
+  color: #dfddda
+
+}
+
+.file-container {
+  cursor: pointer;
+  border-radius: 30px
+
+}
+
+.formbutton:hover {
+background-color: #e7a3e7;
+font-weight: bold; 
+animation-name: bounceIn
+}
+
 .main-buttons {
   font-family: Emilys Candy;
   width: 100%;
@@ -36,8 +89,12 @@ button {
   height: 90;
   border-radius: 40px;
   background-color: #ecd6ce;
-  padding: 20px
+  padding: 20px;
+  animation-name:rubberBand;
+  animation-duration: 2s
 }
+
+
 
 ul {
 list-style-type: none
@@ -66,6 +123,9 @@ list-style-type: none
 
 body {
   font-family: "Josefin Sans", sans-serif;
+  background-image: url("https://data.whicdn.com/images/7990622/original.jpg") !important;
+  background-repeat: repeat-x;
+  background-size: cover;
 }
 
 .navbar {
@@ -120,8 +180,12 @@ body {
     padding-bottom: 0;
     height: 70px;
     align-items: center;
+    position: fixed;
+    top: 0
   }
-
+  .ui.input input {
+    color: red;
+  }
   .main-nav {
     display: flex;
     margin-right: 30px;

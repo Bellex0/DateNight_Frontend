@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Styles/Login.css'
+
 
 
 export class Login extends Component {
@@ -19,10 +19,6 @@ export class Login extends Component {
         })
       }
 
-      // addPhoto = (photo) => 
-      // this.setState({
-      //   image: photo
-      // })
 
 
       fileInput = React.createRef();
@@ -94,8 +90,8 @@ export class Login extends Component {
 
     render() {
         return <>
-    <h1 class="animated infinite flash delay-5s" id="title" style={{"font-size": "50px" }} >Date Night🌹</h1>
-    <h2 id="title" style={{"font-size": "32px" }}>"What do you want to eat?" "Idk" </h2><br/>
+    <h1 class="animated infinite flash delay-5s" id="title" style={{"font-size": "50px", "color":"#f1e3f1" }}><b>Date Night🌹</b></h1><br/>
+    <h2 id="title" style={{"font-size": "32px", "color":"#f1e3f1"   }}><b>"What do you want to eat?" "Idk"</b> </h2><br/>
       <ul>
         {
           this.state.errors.map(error => <li>{ error }</li>)
@@ -104,13 +100,13 @@ export class Login extends Component {
       {
         this.state.logIn 
         ? 
-        <section style={{"border-style":"solid", "padding":"40px"}} className="container">
-          <h2 id="title" style={{"font-size": "24px" }}>Log In</h2>
-          <button class="accountbutton" style={{"font-family":"Emilys Candy", "font-size":"14 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} 
+        <section style={{"border-style":"solid", "padding":"40px", "background-color":"#ecd6", "font-weight":"bold" }} className="container">
+          <h2 id="title" style={{"font-size": "40px", "color":"black" }}><b>Log In</b></h2>
+          <button className="formbutton" style={{"font-family":"Emilys Candy", "font-size":"14 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} 
           onClick={ () => this.setState({ logIn: false }) }>Sign Up</button><br/>
           <br/><form className="form-signin" onSubmit={ this.logInSubmitted }>
             <div>
-            <label  id="label" style={{"font-family":"Emilys Candy"}} htmlFor="log_in_username">Username</label>
+            <label  id="label" style={{"font-family":"Emilys Candy", "font-size":"24 px", "color":"black"}} htmlFor="log_in_username">Username</label>
             <input  id="log_in_username" 
                     type="text" 
                     onChange={ this.handleChange /* for controlled form input status */ } 
@@ -120,7 +116,7 @@ export class Login extends Component {
                     />
                     </div>
               <div>
-            <label  id="label" style={{"font-family":"Emilys Candy"}} htmlFor="log_in_password">Password</label>
+            <label  id="label" style={{"font-family":"Emilys Candy", "font-size":"24 px", "color":"black", "font-weight":"bold"}} htmlFor="log_in_password">Password</label>
             <input  id="log_in_password" 
                     type="password" 
                     onChange={ this.handleChange } 
@@ -129,17 +125,17 @@ export class Login extends Component {
                     value={ this.state.password } 
                     />
             </div>
-            <input class="submit-button" style={{'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px', "font-family":"Emilys Candy", "font-size":"16 px"}} type="submit" />
+            <input class="formbutton" style={{'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px', "font-family":"Emilys Candy", "font-size":"16 px"}} type="submit" />
           </form>
         </section>
         :
-        <section style={{"border-style":"solid", "padding":"40px"}}>
-          <h2 id="title" style={{"font-size": "24px" }}>Sign up </h2><br/>
-          <button class="accountbutton" style={{"font-family":"Emilys Candy", "font-size":"14 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}}onClick={ () => this.setState({ logIn: true }) }>Already have an account</button><br/>
+        <section style={{"border-style":"solid", "padding":"40px", "background-color":"#ecd6", "font-weight":"bold"}}>
+          <h2 id="title" style={{"font-size": "40px", "color":"black" }}><b>Sign Up </b></h2><br/>
+          <button className="formbutton" style={{"font-family":"Emilys Candy", "font-size":"36 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}}onClick={ () => this.setState({ logIn: true }) }>Already have an account</button><br/>
           <br/>
           <form onSubmit ={this.signupSubmit} >
             <div>
-            <label  style={{"font-family":"Emilys Candy", "font-size":"18 px"}} htmlFor="sign_up_username">Username</label>
+            <label  style={{"font-family":"Emilys Candy", "font-size":"24 px"}} htmlFor="sign_up_username">Username</label>
             <input  id="sign_up_username" 
                     type="text" 
                     onChange={ this.handleChange } 
@@ -148,7 +144,7 @@ export class Login extends Component {
                     value={ this.state.username } />
                     </div>
                     <div>
-            <label  style={{"font-family":"Emilys Candy", "font-size":"18 px"}} htmlFor="sign_up_password">Password</label>
+            <label  style={{"font-family":"Emilys Candy", "font-size":"24 px"}} htmlFor="sign_up_password">Password</label>
             <input  id="sign_up_password" 
                     type="password" 
                     onChange={ this.handleChange } 
@@ -157,36 +153,28 @@ export class Login extends Component {
                     value={ this.state.password } />
                     </div>
                     <div>
-            <label>Name</label>   
+            <label style={{"font-family":"Emilys Candy", "font-size":"24 px"}}>Name</label>   
             < input id="sign_up_name" 
                     type="text" 
                     onChange={ this.handleChange } 
                     name="name" 
-                    value={ this.state.name } />   
-            </div>
-            <div>
-            <label>Location</label>   
+                    value={ this.state.name } />   <br/>
+         
+            <label style={{"font-family":"Emilys Candy", "font-size":"24 px"}}>Location</label>   
             < input id="sign_up_location" 
                     type="text" 
                     onChange={ this.handleChange } 
                     name="location" 
-                    value={ this.state.location } />   
-            </div>
-            <div>
-            <label>Image</label>
-            <input type="file" name="image" required ref={this.fileInput} />
+                    value={ this.state.location } />   <br/>
+          
+            <label style={{"margin-left":"40px", "font-family":"Emilys Candy", "font-size":"24 px"}}>Image</label>
+            <input style={{"margin-left":"10px", "font-size":"14px"}} id="normal" type="file" name="image" required ref={this.fileInput} />
+           
             </div>
           
           
-            {/* <div> */}
-            {/* <label>Avatar</label>   
-            < input id="sign_up_avatar" 
-                    type="file" 
-                    onChange={ this.handleFile } 
-                    name="image" 
-                    value={ this.state.image } />   
-            </div> */}
-            <input class="submit-button" style={{"font-family":"Emilys Candy", "font-size":"16 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} type="submit" />
+
+            <input className="formbutton" style={{"font-family":"Emilys Candy", "font-size":"16 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}} type="submit" />
           </form>
         
         </section>

@@ -65,13 +65,15 @@ export class RecipeSearchForm extends Component {
 
       renderIngredient = () => {
         return this.state.ingredientList.map(ingredient => (
-          <div style={{"margin-top": "20px"}}
+          
+          <div className="normal" style={{"font-size":"28px","margin-top": "8px", "color":"#f1e3f1", "font-weight":"bold"}}
             disabled
-            className="delete-ingredient"
-            // onClick={event => this.deleteIngredient(event)}
+  
+            
           >
+            
             {`${ingredient}`}
-            <button style={{"margin-left": "10px"}} data-id={`${ingredient}`} onClick={event => this.deleteIngredient(event)}>❌Delete</button>  
+            <button id="deleteIng" className="normal" style={{"font-size":"16px", "margin-left": "10px", "border-radius": "20px", "padding":"4px"}} data-id={`${ingredient}`} onClick={event => this.deleteIngredient(event)}><span style={{"font-size":"8px"}}>❌</span>Delete</button>  
           </div>      
         ));
       };
@@ -116,45 +118,49 @@ export class RecipeSearchForm extends Component {
               data =>
                 data.missedIngredientCount === 0 ? (
                   <div
-                    className="recipe-results"
+                  id="normal"
+                  className="recipe-results"
                     onClick={() => this.getRecipeDetails(data.id)}
-                    style={{"border-style":"solid", "padding": "16px"}}
+                    style={{"border-style":"solid", "padding": "16px", "margin-bottom":"16px", "background-color":"#ecd6"}}
                   >
-                    <h2>{data.title}</h2>
+                    <h2 className="normal" style={{"font-weight":"bold"}}>{data.title}</h2>
                     <img
                       className="recipe-results-img"
                       src={data.image}
                       alt={data.title}
-                      height="231"
-                      width="312"
+                      height="220"
+                      width="300"
                     />
-                    <button style={{"margin-right":"10px"}} onClick={this.toggleModal.bind(this)}> 👀See Recipe Details</button>
+                    <button id="normal" className="recipe-buttons" style={{"margin-right":"10px", "font-size": "16px", "border-radius":"40px", "padding":"10px"}} onClick={this.toggleModal.bind(this)}> 👀See Recipe Details</button>
                     <button
-                      className="favorite-button"
+                    id="normal"
+                      className="recipe-buttons"
                       onClick={event => this.favoriteRecipe(event, data)}
                       height="100"
-                      width="100">
+                      width="100"
+                      style={{"margin":"16px", "font-size": "16px", "border-radius":"40px", "padding":"10px"}}>
                       ❣️ Favorite! </button>
-                      <button onClick={event => this.addEvent(event, data)} height="100"
-                      width="100" style={{"margin":"16px"}}> 🎊 Add Event!  </button>
+                      <button className="recipe-buttons" id="normal" onClick={event => this.addEvent(event, data)} height="100"
+                      width="100" style={{"margin":"16px", "font-size":"16px","border-radius":"40px", "padding":"10px" }}> 🎊 Add Event!  </button>
                   </div>
                 ) : (
                   <div
+                  id="normal"
                     className="recipe-results"
                     onClick={() => this.getRecipeDetails(data.id)}
-                    style={{"border-style":"solid", "padding": "16px"}}
+                    style={{"border-style":"solid", "padding": "16px", "margin-bottom":"16px", "background-color":"#ecd6"}}
                   >
-                    <h2>{data.title}</h2>
+                    <h2 className="normal" style={{"font-weight":"bold"}}>{data.title}</h2>
                     {this.state.apiMissedIngredients.length > 0 ? (
-                      <h4>
+                      <h4 className="normal">
                         Missing Ingredients :{" "}
                         {this.state.apiMissedIngredients.length}
                       </h4>
                     ) : (
-                      <h4>Missing Ingredients : {data.missedIngredientCount}</h4>
+                      <h4 className="normal">Missing Ingredients : {data.missedIngredientCount}</h4>
                     )}
                     {this.state.isMissingInstructions && (
-                      <h4>
+                      <h4 className="normal">
                         Missing Instructions{" "}
                       </h4>
                     )}
@@ -163,17 +169,19 @@ export class RecipeSearchForm extends Component {
                       src={data.image}
                       alt={data.title}
                       height="231"
-                      width="312"
+                      width="300"
                     /><br/>
-                    <button style={{"margin-right":"10px"}} onClick={this.toggleModal.bind(this)}> 👀 See Recipe Details</button>
+                    <button className="recipe-buttons" id="normal" style={{"margin-right":"10px", "font-size": "16px", "border-radius":"40px", "padding":"10px"}} onClick={this.toggleModal.bind(this)}> 👀 See Recipe Details</button>
                     <button
-                      className="favorite-button"
+                    id="normal"
+                    className="recipe-buttons"
                       onClick={event => this.favoriteRecipe(event, data)}
                       height="100"
-                      width="100">
+                      width="100"
+                      style={{"margin":"16px", "font-size": "16px", "border-radius":"40px", "padding":"10px"}}>
                       ❣️ Favorite! </button>
-                      <button onClick={event => this.addEvent(event, data)} height="100"
-                      width="100" style={{"margin":"16px"}}> 🎊Add Event!  </button>
+                      <button className="recipe-buttons" id="normal" onClick={event => this.addEvent(event, data)} height="100"
+                      width="100" style={{"margin":"16px", "font-size": "16px", "border-radius":"40px", "padding":"10px"}}> 🎊Add Event!  </button>
                     {missingStuff()}
                   </div>
                 )
@@ -190,36 +198,6 @@ export class RecipeSearchForm extends Component {
       };
 
       
-// Add Recipe to Events
-
-// addEvent = (event, recipe) => {
-//   // event.stopPropagation();
-//   alert(`Added ${recipe.title} to Events 🎈!`);
-//   console.log( this.props);
-
-//   fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       "Accept": "application/json", 
-//       "Authorization": localStorage.token
-//     },
-//     body: JSON.stringify({
-//       user_id: this.props.userId,
-//       date: "",
-//       time: "",
-//       location: "",
-//       content: recipe.title,
-//     })
-//   })
-//     .then(res => res.json())
-//     .then(data => {
-//       console.log("event: ", recipe);
-//     })
-//   //   .catch(error => {
-//   //     console.log(error.message);
-//   //   });
-// };
 
       //Add to Favorites
 
@@ -303,21 +281,21 @@ export class RecipeSearchForm extends Component {
                 );
     
                 const recipeDetails = (
-                  <div className="recipe-details">
-                    <img src={recipe.image} alt={recipe.title} />
-                    <h1>{recipe.title}</h1>
+                  <div className="recipe-details" id="normal">
+                    <img src={recipe.image} alt={recipe.title} width="300" height="300"/>
+                    <h1 id="normal" style={{"font-weight":"bold"}}>{recipe.title}</h1>
                     {recipe.preparationMinutes ? (
-                      <h3>{`Prep Time : ${recipe.preparationMinutes} minutes`}</h3>
+                      <h4 id="normal" style={{"font-weight":"bold"}}>{`Prep Time : ${recipe.preparationMinutes} minutes`}</h4>
                     ) : null}
                     {recipe.cookingMinutes ? (
-                      <h3>{`Cook Time : ${recipe.cookingMinutes} minutes`}</h3>
+                      <h4 id="normal" style={{"font-weight":"bold"}}>{`Cook Time : ${recipe.cookingMinutes} minutes`}</h4>
                     ) : null}
-                    <h3>{`Amount of Ingredients: ${recipe.extendedIngredients.length}`}</h3>
-                    <h3>{`Number of Servings: ${recipe.servings}`}</h3>
+                    <h4 id="normal" style={{"font-weight":"bold"}}>{`Amount of Ingredients: ${recipe.extendedIngredients.length}`}</h4>
+                    <h4 id="normal" style={{"font-weight":"bold"}}> {`Number of Servings: ${recipe.servings}`}</h4>
                     {recipe.dishTypes.length > 0 ? (
-                      <h3>{`Category: ${recipe.dishTypes[0]}`}</h3>
+                      <h4 id="normal" style={{"font-weight":"bold"}}>{`Category: ${recipe.dishTypes[0]}`}</h4>
                     ) : null}
-                    <div className="recipe-ingredient-image">
+                    <div id="normal" className="recipe-ingredient-image">
                       {recipe.extendedIngredients.map(ingredient => {
                         return (
                           <img
@@ -385,6 +363,7 @@ export class RecipeSearchForm extends Component {
               type="text"
               disabled
               className="matching-ingredient"
+              style={{"margin":"10px"}}
             >
               {ingredient}
             </button>
@@ -395,6 +374,7 @@ export class RecipeSearchForm extends Component {
               type="text"
               disabled
               className="missing-ingredient"
+              style={{"margin":"10px"}}
             >
               {ingredient}
             </button>
@@ -404,12 +384,13 @@ export class RecipeSearchForm extends Component {
             this.state.recipeSteps.map(recipe => {
               return (
                 <p
+                style={{"font-size":"16px"}}
                   className="instruction-steps"
                 >{`${recipe.number} ${recipe.step}`}</p>
               )
               })
             ) : (
-            <h4 className="no-instructions">
+            <h4 id="normal" style={{"font-size":"16px"}} className="no-instructions">
               Oops, Sorry! There is no recipe for this dish 😣
             </h4>
           )
@@ -425,15 +406,16 @@ export class RecipeSearchForm extends Component {
                         value={this.state.ingredient}
                         onChange={this.handleIngredientInputChange}
                     />
-                <Button id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px"}}>Add Ingredient 🍴</Button>
+                <Button className="grayButton" id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px","font-size":"16px"}}>Add Ingredient 🍴</Button>
                 </Form>
+                <h5 style={{"font-family":'Open Sans Condensed', "font-size":"32px", "margin-top":"26px", "color":"#f1e3f1"}}><b>Ingredients I have:</b></h5>
                     {this.state.ingredientList.length > 0 && (
                         <div className="ingredient-box">
                             {this.renderIngredient()}
                             <Button
-                            style={{"margin-top":"16px"}}
+                            style={{"margin-top":"16px", "border-radius":"30px", "font-family":"Emilys Candy", "font-size":"16px"}}
                                 href="/#"
-                                className="search"
+                                className="grayButton"
                                 onClick={event => this.findRecipe(event)}
                             >
                                 Get Yummy Recipes! 😋
@@ -441,14 +423,14 @@ export class RecipeSearchForm extends Component {
             </div>
             )}
              </div>
-        <div style={{'display': 'flex', 'flex-direction': 'row', 'flex-wrap': 'wrap', 'justify-content': 'space-around', 'align-items': 'space-around', 'height': '100%', 'margin-top': '16px'}}>
+        <div style={{"margin-top":"10px", "display": 'flex', 'flex-direction': 'row', 'flex-wrap': 'wrap', 'justify-content': 'space-around', 'align-items': 'space-around', 'height': '100%', 'margin-top': '16px'}}>
              {this.state.apiFormattedReturnedRecipes}
              </div>
              
 
-<Modal isOpen={this.state.modalIsOPen}>
-    <ModalHeader toggle={this.toggleModal.bind(this)}>What About This?</ModalHeader>
-    <ModalBody>{this.state.recipeDetails}
+<Modal className="normal" isOpen={this.state.modalIsOPen}>
+    <ModalHeader className="normal" toggle={this.toggleModal.bind(this)}>What About This?</ModalHeader>
+    <ModalBody style={{"font-size":"16px"}}>{this.state.recipeDetails}
     {ingredientList3}
     {ingredientList2}
     {recipeList}
