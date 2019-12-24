@@ -30,7 +30,7 @@ export class FavoriteRestaurantsContainer extends Component {
         let placeList = this.state.favoritePlaces.length > 0 ? (
         this.state.favoritePlaces.map(favoritePlace => { return (<FavoriteRestaurants favePlace={favoritePlace} mount={this.mount}/>)}))
         : 
-        (<h4 style={{"margin-top": "40px"}}>You don't have any favorites right now. Get to it!</h4>)
+        (<h4 style={{"color":"#f1e3f1", "margin-top": "40px"}}>You don't have any favorites right now. Get to it!</h4>)
          
 
         return (

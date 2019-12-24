@@ -3,10 +3,12 @@ import React, { Component } from 'react'
 export class Profile extends Component {
 
     state = {
+      token: "",
         username: "",
         name: "",
         location: "",
-        image: ""
+        image: "",
+        loggedInUserId: ""
     }
 
     componentDidMount() {
@@ -37,8 +39,18 @@ export class Profile extends Component {
             method: "DELETE",
         })
         .then(r => {
-            this.props.history.push('/')
+          localStorage.clear()
+          this.setState({
+            token: null,
+            loggedInUserId: null,
+            username: null
+          })
+          this.props.history.push('/')
+          window.location.reload()
+            
         })
+         
+    
     }
 }
 

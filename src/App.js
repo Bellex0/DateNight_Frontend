@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import Logo from './datenight.jpg'
 import './App.css';
-import { Route, Switch, withRouter, NavLink } from 'react-router-dom';
+import { Route, Switch, withRouter, NavLink, Redirect } from 'react-router-dom';
 import Login from './components/Login';
 import MainPage from './containers/MainPage';
 import Profile from './components/Profile';

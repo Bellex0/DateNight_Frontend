@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  background-image: url("https://data.whicdn.com/images/7990622/original.jpg") !important;
+  background-repeat: repeat-x;
+  background-size: cover;
+
 }
 
 .field label{
@@ -22,7 +26,7 @@ font-family: 'Open Sans Condensed'
 
 .recipe-buttons:hover{
   animation-name: bounceIn;
-  animation-duration: 3s;
+  animation-duration: 1s;
   background-color: rgb(173, 166, 166);
 }
 

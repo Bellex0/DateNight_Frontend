@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, Segment, Container, Form, Input, Header, TextArea} from 'semantic-ui-react';
+import {Card, Segment, Container, Form, Input, Header, Grid} from 'semantic-ui-react';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 
 export class RecipeSearchForm extends Component {
@@ -396,17 +396,18 @@ export class RecipeSearchForm extends Component {
           )
 
         return (
+            <div >
             <div>
-            <div>
-                <Form onSubmit={(e) => this.handleIngredientSubmit(e)}>
+                <Form style={{"display":"flex", "justify-content":"center", "align-items":"center"}} onSubmit={(e) => this.handleIngredientSubmit(e)}>
                     <Form.Input
+                    width={6} 
                         fluid
                         placeholder="What's in your fridge?" 
                         name="ingredient"
                         value={this.state.ingredient}
                         onChange={this.handleIngredientInputChange}
                     />
-                <Button className="grayButton" id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px","font-size":"16px"}}>Add Ingredient 🍴</Button>
+                <Button className="grayButton" id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px","font-size":"16px", "margin-left":"8px"}}>Add Ingredient 🍴</Button>
                 </Form>
                 <h5 style={{"font-family":'Open Sans Condensed', "font-size":"32px", "margin-top":"26px", "color":"#f1e3f1"}}><b>Ingredients I have:</b></h5>
                     {this.state.ingredientList.length > 0 && (

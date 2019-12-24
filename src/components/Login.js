@@ -90,11 +90,12 @@ export class Login extends Component {
 
     render() {
         return <>
-    <h1 class="animated infinite flash delay-5s" id="title" style={{"font-size": "50px", "color":"#f1e3f1" }}><b>Date Night🌹</b></h1><br/>
-    <h2 id="title" style={{"font-size": "32px", "color":"#f1e3f1"   }}><b>"What do you want to eat?" "Idk"</b> </h2><br/>
+    <h1 class="animated infinite flash delay-5s" id="title" style={{"font-size": "60px", "color":"#f1e3f1" }}><b>Date Night🌹</b></h1><br/>
+    <h2 id="title" style={{"font-size": "32px", "color":"#f1e3f1"   }}><b>"What do you want to eat?" "Idk babe, what do you wanna eat?"<br/>
+      - repeat 10x</b> </h2><br/>
       <ul>
         {
-          this.state.errors.map(error => <li>{ error }</li>)
+          this.state.errors.map(error => <li style={{"font-family":"Open Sans Condensed", "color":"white", "font-size":"30px"}}>{ error }</li>)
         }
       </ul>
       {
@@ -130,7 +131,7 @@ export class Login extends Component {
         </section>
         :
         <section style={{"border-style":"solid", "padding":"40px", "background-color":"#ecd6", "font-weight":"bold"}}>
-          <h2 id="title" style={{"font-size": "40px", "color":"black" }}><b>Sign Up </b></h2><br/>
+          <h2 id="title" style={{"font-size": "40px", "color":"black" }}><b>Sign Up to Find New Recipes <span>&</span> Places to Eat! </b></h2><br/>
           <button className="formbutton" style={{"font-family":"Emilys Candy", "font-size":"36 px", 'padding': '4px 12px', 'border-radius': '50px', 'margin-top': '16px'}}onClick={ () => this.setState({ logIn: true }) }>Already have an account</button><br/>
           <br/>
           <form onSubmit ={this.signupSubmit} >
@@ -168,7 +169,7 @@ export class Login extends Component {
                     value={ this.state.location } />   <br/>
           
             <label style={{"margin-left":"40px", "font-family":"Emilys Candy", "font-size":"24 px"}}>Image</label>
-            <input style={{"margin-left":"10px", "font-size":"14px"}} id="normal" type="file" name="image" required ref={this.fileInput} />
+            <input style={{"margin-left":"24px", "font-size":"16px"}} id="normal" type="file" name="image" required ref={this.fileInput} />
            
             </div>
           
