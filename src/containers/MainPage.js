@@ -11,29 +11,8 @@ import '../App.css'
 
 
 export class MainPage extends Component {
-
- 
-
-    // state = {
-    //     favorites: [],
-    //     token: localStorage.token
-    // }
-
-    // componentDidMount = () => {
-    //     fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorites`)
-    //     .then(res => res.json())
-    //     .then(favoritesData => {
-    //         console.log(favoritesData)
-    //         this.setState({
-    //             favorites: favoritesData
-    //         })
-    //     })
-    // }
-
    
-
     render() {
-        // this.state.favorites.map(favoriteRecipe => <Favorites favorite={favoriteRecipe}/>)
 
         return (
             <div className="background">
@@ -55,20 +34,7 @@ export class MainPage extends Component {
                <Col><Link to="/profile"><button className="main-buttons" style={{ "marginBottom":"20px", "font-size": "36px"}}> View Profile 👓</button></Link></Col>
                </Row>
                </div>
-               </div>
-               
-               
-               {/* button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/recipes">Eat In 🏠🍝</Link></button> </Col>
-               
-                </Row>
-                {/* <button style={{"padding":"20px", "marginBottom":"20px"}}><Link to="/events">My Events 🎉 </Link></button> <br/> */}
-                {/* <br/>
-               </button> <br/>
-                 <br/> 
-                 */}
-
-
-                
+               </div> 
 
  </Container>
  </div>

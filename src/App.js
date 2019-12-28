@@ -97,12 +97,9 @@ class App extends React.Component {
                  
                   <li>
                   
-                  {/* <a href= class="nav-links">Git Backend </a> */}
                   <i class="fa fa-github" style={{"font-size":"20px"}}></i>
                   </li>
                   <li>
-                 
-                    {/* <a href= class="nav-links">Git Frontend</a> */}
                     
                   </li>
                 </ul>

@@ -30,7 +30,7 @@ export class Events extends Component {
 
     deleteEvent = () => {
         console.log("delete");
-        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events/${this.props.event.id}`, {
+        fetch(`https://datenight-api.herokuapp.com/user/${localStorage.loggedInUserId}/events/${this.props.event.id}`, {
             method: "DELETE",
         })
         .then(r => {
@@ -40,7 +40,7 @@ export class Events extends Component {
 
     updateEvent = (event) => {
         console.log("up")
-        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events/${this.props.event.id}`, {
+        fetch(`https://datenight-api.herokuapp.com/user/${localStorage.loggedInUserId}/events/${this.props.event.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export class Events extends Component {
               body: JSON.stringify({
                 date: this.state.date,
                 time: this.state.time,
-                // location: this.state.location
+                
               })
             })
               .then(res => res.json())
@@ -70,12 +70,6 @@ export class Events extends Component {
     
     timeChange = time => this.setState({ time: time })
     
-    
-      
-
-// handleChange = (date)  => {
-//     this.setState({ [name]: value });
-//   }
 
             handleChange = (date) => {
 
@@ -92,16 +86,7 @@ export class Events extends Component {
             })
         }
 
-    // onChange = time => this.setState({ time })
-//   handleSubmit = event => {
-//       console.log(event)
-//     event.preventDefault();
-//     this.setState(
-//       {
-//         date: this.state.date,
-//         time: this.state.time
-//       })
-//     }
+ 
 
     render() {
 
@@ -138,7 +123,7 @@ export class Events extends Component {
     <Modal isOpen={this.state.modalIsOPen}>
     <ModalHeader toggle={this.toggleModal.bind(this)}>Enter Date and Time for this Event</ModalHeader>
     <ModalBody>
-        {/* <Form onSubmit={(e) => this.updateEvent(e)}> */}
+       
                     <div style={{"display":"inline-flex", "margin-right":"20px"}}>
                       <DatePicker
                       placeholderText="Date"
@@ -149,11 +134,6 @@ export class Events extends Component {
                     />
                     </div>
 
-                    {/* {/* <DayPickerInput
-        formatDate={formatDate}
-        parseDate={parseDate}
-        placeholder={`${formatDate(new Date())}`}
-      /> */}
                     <div style={{"display":"inline-flex"}}>
                     <DatePicker
                     placeholderText="Time"
@@ -168,18 +148,7 @@ export class Events extends Component {
                     </div>
 
                    
-                        {/* <input
-                         placeholder="Location"
-                         name="location"
-                         value={this.state.location}
-                         onChange={this.locationChange}
-                        /> */}
-                           
-                       
-                   
-                    {/* <Form.Field control={Button}>Submit</Form.Field> */}
-                
-                {/* </Form> */}
+                    
     </ModalBody>
     <ModalFooter>
     <Button onClick={this.updateEvent} id="submit-button" style={{"font-family":"Emilys Candy", "border-radius": "50px",}}>Submit</Button>

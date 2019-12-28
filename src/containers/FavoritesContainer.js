@@ -10,7 +10,7 @@ export class FavoritesContainer extends Component {
     }
 
     componentDidMount () {
-        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorites`, {
+        fetch(`https://datenight-api.herokuapp.com/user/${localStorage.loggedInUserId}/favorites`, {
             headers: {
                 Authorization: `Bearer ${localStorage.token}`
             }
@@ -41,9 +41,7 @@ export class FavoritesContainer extends Component {
     // }
 
     render() {
-        // let favePlaces = this.state.favorites.filter(favorite => favorite.recipe_api_id === null)
-        // console.log(favePlaces)
-        //  const faveRecipeList = this.state.favorites.map(favoriteRecipe => <Favorites favorite={favoriteRecipe} mount={this.mount}/>)
+       
 
          let faveRecipeList = this.state.favorites.length > 0 ? (
             this.state.favorites.map(favoriteRecipe => { return (<Favorites favorite={favoriteRecipe} mount={this.mount}/>)}))

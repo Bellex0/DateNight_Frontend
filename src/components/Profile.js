@@ -13,7 +13,7 @@ export class Profile extends Component {
 
     componentDidMount() {
         if (localStorage.token) {
-          fetch('http://localhost:3000/profile',{
+          fetch('https://datenight-api.herokuapp.com/profile',{
             headers: {
               'Authorization': `Bearer ${localStorage.token}`
             }
@@ -35,7 +35,7 @@ export class Profile extends Component {
             this.props.history.push('/main')
         }
         else {
-        fetch(`http://localhost:3000/users/${localStorage.loggedInUserId}`, {
+        fetch(`https://datenight-api.herokuapp.com/users/${localStorage.loggedInUserId}`, {
             method: "DELETE",
         })
         .then(r => {
@@ -54,11 +54,7 @@ export class Profile extends Component {
     }
 }
 
-// updateUser = () => 
-// fetch('http://localhost:3000/profile', {
-//     method: 'PATCH', 
-//     headers: 
-// })
+
 
          
 

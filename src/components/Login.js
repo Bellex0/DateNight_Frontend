@@ -25,7 +25,7 @@ export class Login extends Component {
     
       logInSubmitted = (event) => {
         event.preventDefault()
-        fetch("http://localhost:3000/login", {
+        fetch("https://datenight-api.herokuapp.com/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -49,11 +49,6 @@ export class Login extends Component {
         // when fetch is done...get token
       }
 
-      //   username: this.state.username, 
-          //   password: this.state.password,
-          //   name: this.state.name,
-          //   location: this.state.location, 
-          //   image: this.state.image
     
       signupSubmit = (event) => {
         event.preventDefault()
@@ -81,12 +76,7 @@ export class Login extends Component {
         // when fetch is done...get token
       }
 
-    //  imageSubmit = (e) => {
-    //    e.preventDefault()
-       
-    //    formData.append('image', this.fileInput.current.files[0])
-    //    this.addPhoto(formData)
-    //  }
+   
 
     render() {
         return <>

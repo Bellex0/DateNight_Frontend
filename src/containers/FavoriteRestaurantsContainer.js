@@ -9,7 +9,7 @@ export class FavoriteRestaurantsContainer extends Component {
     }
 
     componentDidMount = () => {
-        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorite_places`)
+        fetch(`https://datenight-api.herokuapp.com/user/${localStorage.loggedInUserId}/favorite_places`)
         .then(res => res.json())
         .then(favoritesData => {
             console.log(favoritesData)

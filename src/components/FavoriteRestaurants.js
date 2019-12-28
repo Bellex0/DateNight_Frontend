@@ -7,7 +7,7 @@ export class FavoriteRestaurants extends Component {
 
     deleteAnswer = () => {
         console.log("delete");
-        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorite_places/${this.props.favePlace.id}`, {
+        fetch(`https://datenight-api.herokuapp.com/user/${localStorage.loggedInUserId}/favorite_places/${this.props.favePlace.id}`, {
             method: "DELETE",
         })
         .then(r => {

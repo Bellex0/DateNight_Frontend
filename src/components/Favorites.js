@@ -20,7 +20,7 @@ export class Favorites extends Component {
 
     deleteAnswer = () => {
         console.log("delete");
-        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorites/${this.props.favorite.id}`, {
+        fetch(`https://datenight-api.herokuapp.com/user/${localStorage.loggedInUserId}/favorites/${this.props.favorite.id}`, {
             method: "DELETE",
         })
         .then(r => {

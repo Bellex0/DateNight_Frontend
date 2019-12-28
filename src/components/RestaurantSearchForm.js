@@ -94,7 +94,7 @@ export class RestaurantSearchForm extends Component {
         alert(`Added ${restaurant.name} to Events 🎈!`);
         console.log( this.props);
     
-        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`, {
+        fetch(`https://datenight-api.herokuapp.com/user/${localStorage.loggedInUserId}/events`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -124,7 +124,7 @@ export class RestaurantSearchForm extends Component {
                 alert(`Added ${restaurant.name} to Favorites ❤️!`);
                 console.log( this.props);
     
-                fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/favorite_places`, {
+                fetch(`https://datenight-api.herokuapp.com/user/${localStorage.loggedInUserId}/favorite_places`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

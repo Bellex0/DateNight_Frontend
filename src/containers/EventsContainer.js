@@ -9,7 +9,7 @@ export class EventsContainer extends Component {
     }
 
     componentDidMount = () => {
-        fetch(`http://localhost:3000/user/${localStorage.loggedInUserId}/events`)
+        fetch(`https://datenight-api.herokuapp.com/user/${localStorage.loggedInUserId}/events`)
         .then(res => res.json())
         .then(eventsData => {
            
