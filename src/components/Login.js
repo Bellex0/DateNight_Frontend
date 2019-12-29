@@ -58,7 +58,7 @@ export class Login extends Component {
         formData.append('name', this.state.name)
         formData.append('location', this.state.location)
         formData.append('image', this.fileInput.current.files[0])
-        fetch("http://localhost:3000/signup", {
+        fetch("https://datenight-api.herokuapp.com/signup", {
           method: "POST",
           body: formData
         }).then(res => res.json())
