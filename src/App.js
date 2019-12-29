@@ -115,7 +115,7 @@ class App extends React.Component {
         <Route exact path={'/favorite_places'} component={FavoriteRestaurantsContainer} />
         <Route exact path={'/restaurants'} component={RestaurantsContainer} />
         <Route exact path={'/recipes'} component={RecipesContainer} />
-        <Route component={FourOhFour}/>
+        <Route path="*" exact={true} component={FourOhFour}/>
 
       </Switch>
      

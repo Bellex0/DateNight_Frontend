@@ -55,11 +55,6 @@ export class Profile extends Component {
 }
 
 
-
-         
-
-
-
     render() {
         console.log(this.state)
         return (
@@ -68,13 +63,10 @@ export class Profile extends Component {
                 <h1 style={{"margin-top":"90px", "color":"#f1e3f1", "font-family":"Emilys Candy"}}>Profile</h1>
                 <img src={this.state.image} width="200 px" height="250 px"></img>
                 
-
-
                 <h2 style={{"color":"#f1e3f1", "margin-top":"30px"}}><b>Username: {this.state.username}</b></h2>
                 <h2 style={{"color":"#f1e3f1"}}><b>Name: {this.state.name}</b></h2>
                 <h2 style={{"color":"#f1e3f1"}}><b>Location: {this.state.location}</b></h2>
                 <button id="deleteIng" style={{"font-size":"16px", "margin-left": "10px", "border-radius": "20px", "padding":"4px"}} onClick={this.deleteUser}> 🚫 Delete Account</button>
-
             
                 </div>
         )
