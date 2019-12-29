@@ -65,7 +65,7 @@ export class Profile extends Component {
         return (
             <div>
 
-                <h1 style={{"color":"#f1e3f1", "font-family":"Emilys Candy"}}>Profile</h1>
+                <h1 style={{"margin-top":"90px", "color":"#f1e3f1", "font-family":"Emilys Candy"}}>Profile</h1>
                 <img src={this.state.image} width="200 px" height="250 px"></img>
                 
 

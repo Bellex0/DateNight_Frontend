@@ -50,7 +50,7 @@ export class FavoritesContainer extends Component {
 
         return (
             <div >
-                 <h1 style={{"color":"#f1e3f1", "font-family":"Emilys Candy", "font-size":"40px"}}>Favorite Recipes</h1>
+                 <h1 style={{"margin-top":"90px", "color":"#f1e3f1", "font-family":"Emilys Candy", "font-size":"40px"}}>Favorite Recipes</h1>
                  {faveRecipeList}
 
             

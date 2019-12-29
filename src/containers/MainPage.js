@@ -15,10 +15,10 @@ export class MainPage extends Component {
     render() {
 
         return (
-            <div className="background">
+            <div>
             <Container className="container" >
                 <div >
-                <h1 id="normal" style={{"color":"#f1e3f1", "font-size":"80px", "font-weight":"bold", "width":"500"}}>Hey {this.props.username}!</h1>
+                <h1 id="normal" style={{"margin-top":"90px", "color":"#f1e3f1", "font-size":"80px", "font-weight":"bold", "width":"500"}}>Hey {this.props.username}!</h1>
                 <h3 id="normal" className="animated infinite pulse" style={{"color":"#f1e3f1", "font-size":"46px", "font-weight":"bold", "width":"500"}}> What's the plan for tonight?</h3><br/>
                 <div style={{"margin-top":"60px"}}>
                     <Row>

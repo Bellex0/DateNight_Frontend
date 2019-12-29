@@ -396,7 +396,7 @@ export class RecipeSearchForm extends Component {
           )
 
         return (
-            <div >
+            <div>
             <div>
                 <Form style={{"display":"flex", "justify-content":"center", "align-items":"center"}} onSubmit={(e) => this.handleIngredientSubmit(e)}>
                     <Form.Input

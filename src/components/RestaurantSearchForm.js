@@ -254,7 +254,7 @@ export class RestaurantSearchForm extends Component {
                     {/* </Form.Group> */}
                     
                 
-                <div style={{"margin-top":"16px",'display': 'flex', 'flexDirection': 'row', 
+                <div style={{ "margin-top":"16px",'display': 'flex', 'flexDirection': 'row', 
                 'justifyContent': 'center', 'flex-wrap': 'wrap'}}>
         {this.state.foundPlaces}
         {/* {this.sortFood()} */}

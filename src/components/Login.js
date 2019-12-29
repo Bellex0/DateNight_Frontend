@@ -80,7 +80,7 @@ export class Login extends Component {
 
     render() {
         return <>
-    <h1 class="animated infinite flash delay-5s" id="title" style={{"font-size": "60px", "color":"#f1e3f1" }}><b>Date Night🌹</b></h1><br/>
+    <h1 class="animated infinite flash delay-5s" id="title" style={{"margin-top":"80px", "font-size": "60px", "color":"#f1e3f1" }}><b>Date Night🌹</b></h1><br/>
     <h2 id="title" style={{"font-size": "32px", "color":"#f1e3f1"   }}><b>"What do you want to eat?" "Idk babe, what do you wanna eat?"<br/>
       - repeat 10x</b> </h2><br/>
       <ul>

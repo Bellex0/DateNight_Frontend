@@ -63,7 +63,7 @@ export class EventsContainer extends Component {
 
         return (
             <div>
-                <h1 style={{"color":"#f1e3f1", "font-family":"Emilys Candy", "font-size":"40px"}}><b>Events</b></h1>
+                <h1 style={{"margin-top":"90px", "color":"#f1e3f1", "font-family":"Emilys Candy", "font-size":"40px"}}><b>Events</b></h1>
                 <div style={{"display": "flex", "flexDirection": "row", textAlign:"center"}}></div>
                 {eventList}
             </div>

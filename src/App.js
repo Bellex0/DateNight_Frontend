@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import Logo from './datenight.jpg'
 import './App.css';
-import { Route, Switch, withRouter, NavLink, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter, NavLink, Redirect, Link } from 'react-router-dom';
 import Login from './components/Login';
 import MainPage from './containers/MainPage';
 import Profile from './components/Profile';
@@ -74,7 +74,7 @@ class App extends React.Component {
     <div className="App">
       
             
-              <nav class="navbar" style={{'margin-bottom': '24px'}}>
+              <nav class="navbar" >
                 
                     <div className= "logo1"  >
                     
@@ -82,8 +82,9 @@ class App extends React.Component {
                     </div>
                 <ul class="main-nav" id="js-menu">
                     <li>
-                  {this.state.username ? <a href="/main" class="nav-links"> {this.state.username} 
-                       </a>: null}
+                  {this.state.username ? <Link to="/main" class="nav-links">{this.state.username}</Link>:null}
+                  {/* // <a href="/main" class="nav-links"> {this.state.username} 
+                  //      </a>: null} */}
                      {/* <a  href="/main" class="nav-links"> Home
                        </a>  */}
                    </li> 
