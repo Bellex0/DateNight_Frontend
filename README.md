@@ -1,68 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Date Night
 
-## Available Scripts
+### [App](http://datenight.surge.sh)
+### [Demo](https://youtu.be/RtuMEX19Wo0)
 
-In the project directory, you can run:
+A lifestyle app that helps users decide whether they should cook at home or go out to eat. Users can find recipes based on ingredients they already own, search for places to eat, and maintain a meal schedule.
 
-### `yarn start`
+Upon logging on/signing up, users are prompted to the main page
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![main page](https://live.staticflickr.com/65535/49347708313_4d0bea6713_k.jpg/200x150) 
 
-### `yarn test`
+Users can choose:
+ * **Eat In**
+     * Enter ingredients they already have at home.  App generates recipes based on those ingredients.
+      * View recipe details including prep & cook time and instructions
+    * Add recipe to "Favorite Recipes" and "Events"
+* **Go Out**
+  * Search for restaurants based by specific keywords, category, and/or location
+  * View each restaurant's info including Google Map location, Yelp page, price, rating. Restaurants are sorted by distance.  
+  * Add restaurant to "Favorite Places" and "Events"
+* **Favorite Recipes**
+  * View all favorite recipes & details for each recipe
+  * Delete recipe from favorites list
+* **Favorite Places**
+  * View all favorite places & details for each place
+  * Delete restaurant from favorites list
+* **Events**
+  * Serves as a  schedule for users to organize what recipe they will cook or what restaurant they will go to for the upcoming days  
+  * Update date & time for each event
+  * Delete event from list
+* **Profile**
+  * View account information & avatar
+  * Delete account
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Backend Repository
+[Date Night API](https://github.com/Bellex0/DateNight-API)
 
-### `yarn build`
+## Technologies Used
+* React.js 
+* React-Router
+* Ruby on Rails for backend
+* Cloudinary 
+* Yelp API
+* Spoonacular API
+* Google Maps API
+* JSON Web Tokens (JWT)
+* Semantic UI React
+* HTML5(JSX)
+* CSS (customized)
+* Animate.css
+ 
+## Installation
+1) Install and run Date Night Backend
+2) Fork (optional) and clone or download this repository to local system
+3) Use preferred text editor and/or terminal to navigate into DateNight_Frontend directory
+4) Run npm install (or npm i) in terminal
+5) Run npm start in terminal to launch the app in browser
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+*Note: If backend (Rails) server is already running, it will be running on http://localhost:3000/. After running `npm start`, follow prompt and type `y` in terminal to run frontend on alternate port.
