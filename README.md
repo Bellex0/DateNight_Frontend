@@ -52,7 +52,7 @@ Users can choose:
  
 ## Installation
 1) Install and run [Date Night API](https://github.com/Bellex0/DateNight-API)
-2) Fork (optional) and clone or download this repository to local system
+2) Clone or download this repository to local system
 3) Use preferred text editor and/or terminal to navigate into `DateNight_Frontend` directory
 4) Run `npm install` (or `npm i`) in terminal
 5) Run `npm start` in terminal to launch the app in browser
